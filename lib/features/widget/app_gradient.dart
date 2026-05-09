@@ -22,7 +22,7 @@ class AppGradient extends StatelessWidget {
           stops: [0.0, 0.35, 0.5, 1.0],
         ),
       ),
-      child: child,
+      child: SafeArea(bottom: false, child: child),
     );
   }
 }

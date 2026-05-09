@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:taskee/app/extension/context_extension.dart';
-import 'package:taskee/features/todos/presentation/pages/add/add_todo_screen.dart';
-import 'package:taskee/features/widget/app_gradient.dart';
 
-import '../../../domain/entities/todo.dart';
-import '../../bloc/todo_bloc.dart';
-import '../../bloc/todo_event.dart';
-import '../../bloc/todo_state.dart';
-import '../../widgets/todo_list_item.dart';
-import 'package:taskee/app/helper/app_utils.dart';
-import 'package:taskee/app/routing/app_route.dart';
+import 'package:taskee/app/extension/context_extension.dart';
+
+import 'package:taskee/features/todos/presentation/pages/add/add_todo_screen.dart';
+import 'package:taskee/features/todos/presentation/pages/home/widget/task_widget.dart';
+import 'package:taskee/features/todos/presentation/pages/home/widget/user_info.dart';
+import 'package:taskee/features/widget/app_gradient.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -30,55 +24,11 @@ class HomeScreenState extends State<HomeScreen> {
         child: const Icon(Icons.add),
       ),
       body: AppGradient(
-        child: BlocBuilder<TodoBloc, TodoState>(
-          builder: (context, state) {
-            if (state is TodoLoadingState) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            if (state is TodoLoadedState) {
-              if (state.todoModel.todoList.isEmpty) {
-                return const Center(child: Text('Empty'));
-              }
-              return ListView.builder(
-                itemCount: state.todoModel.todoList.length,
-                itemBuilder: (context, index) {
-                  final todo = state.todoModel.todoList[index];
-                  return TodoListItem(
-                    todo: todo,
-                    onClickItem: () {
-                      context.push(
-                        "/${Routes.updateScreen}",
-                        extra: {"todo": todo},
-                      );
-                    },
-                    onClickDelete: () {
-                      context.read<TodoBloc>().add(
-                        TodoItemDeletedEvent(todo.id),
-                      );
-                      AppUtils.showSnackBar(
-                        context: context,
-                        message: '${todo.title} is deleted',
-                        label: 'Undo',
-                        onPress: () => onClickUndo(todo),
-                      );
-                    },
-                    onToggleComplete: () {
-                      context.read<TodoBloc>().add(
-                        TodoItemToggleCompletedEvent(todo),
-                      );
-                    },
-                  );
-                },
-              );
-            }
-            return const Text('Something went wrong!');
-          },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [UserInfoWidget(), TaskWidget()],
         ),
       ),
     );
-  }
-
-  void onClickUndo(Todo todo) {
-    context.read<TodoBloc>().add(TodoItemUndoDeletedEvent(todo));
   }
 }

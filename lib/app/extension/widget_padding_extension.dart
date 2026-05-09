@@ -28,3 +28,8 @@ extension WidgetPaddingExtension on Widget {
     child: this,
   );
 }
+
+const pagePadding = EdgeInsets.symmetric(horizontal: 20);
+
+const left20Padding = EdgeInsets.only(left: 20);
+const right20Padding = EdgeInsets.only(right: 20);
