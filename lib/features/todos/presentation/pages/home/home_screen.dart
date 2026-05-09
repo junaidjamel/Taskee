@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:taskee/app/extension/context_extension.dart';
+import 'package:taskee/app/extension/widget_padding_extension.dart';
 
 import 'package:taskee/features/todos/presentation/pages/add/add_todo_screen.dart';
 import 'package:taskee/features/todos/presentation/pages/home/widget/task_widget.dart';
-import 'package:taskee/features/todos/presentation/pages/home/widget/user_info.dart';
+import 'package:taskee/features/todos/presentation/pages/home/widget/user_info_widget.dart';
 import 'package:taskee/features/widget/app_gradient.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,16 +18,70 @@ class HomeScreen extends StatefulWidget {
 class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => context.gotTo(const AddTodoScreen()),
-
-        child: const Icon(Icons.add),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => context.gotTo(const AddTodoScreen()),
+          child: const Icon(Icons.add),
+        ),
+        body: AppGradient(
+          child: Column(
+            children: [
+              const UserInfoWidget(),
+              const TabCardWidget(),
+              const Expanded(
+                child: TabBarView(
+                  children: [
+                    TaskWidget(),
+                    Center(child: Text('Important')), // IMPORTANT tab content
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
-      body: AppGradient(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [UserInfoWidget(), TaskWidget()],
+    );
+  }
+}
+
+class TabCardWidget extends StatelessWidget {
+  const TabCardWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: IntrinsicWidth(
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          padding: const EdgeInsets.all(4),
+          decoration: BoxDecoration(
+            color: Colors.white10,
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: TabBar(
+            isScrollable: true,
+            tabAlignment: TabAlignment.start,
+            dividerColor: Colors.transparent,
+            indicator: BoxDecoration(
+              color: const Color.fromARGB(255, 108, 106, 105),
+              borderRadius: BorderRadius.circular(30),
+            ),
+            indicatorSize: TabBarIndicatorSize.tab,
+            labelColor: Colors.white,
+            unselectedLabelColor: Colors.white38,
+            labelStyle: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.5,
+            ),
+            tabs: [
+              Tab(text: 'NOTES').paddingSymmetric(horizontal: 20),
+              Tab(text: 'IMPORTANT'),
+            ],
+          ),
         ),
       ),
     );
