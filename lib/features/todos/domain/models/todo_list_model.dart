@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../domain/entities/todo.dart';
+import '../entities/todo.dart';
 
 class TodoListModel extends Equatable {
   const TodoListModel({required this.todoList});
@@ -10,4 +10,3 @@ class TodoListModel extends Equatable {
   @override
   List<Object> get props => [todoList];
 }
-

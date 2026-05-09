@@ -6,7 +6,7 @@ import '../../domain/usecases/get_all_todos.dart';
 import '../../domain/usecases/toggle_complete_todo.dart';
 import '../../domain/usecases/undo_deleted_todo.dart';
 import '../../domain/usecases/update_todo.dart';
-import '../models/todo_list_model.dart';
+import '../../domain/models/todo_list_model.dart';
 import 'todo_event.dart';
 import 'todo_state.dart';
 
