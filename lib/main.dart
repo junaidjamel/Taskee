@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:hive/hive.dart';
+import 'package:taskee/app/theme/app_theme.dart';
 import 'package:taskee/features/todos/presentation/bloc/todo_bloc.dart';
 import 'package:taskee/app/routing/go_router.dart';
 import 'package:taskee/features/todos/presentation/bloc/todo_event.dart';
@@ -32,7 +33,6 @@ class MyAppState extends State<MyApp> {
 
   @override
   void dispose() {
-    // Closes all Hive boxes
     Hive.close();
     super.dispose();
   }
@@ -45,7 +45,7 @@ class MyAppState extends State<MyApp> {
       ],
       child: MaterialApp.router(
         title: 'Hive Todo',
-        theme: ThemeData(primarySwatch: Colors.purple),
+        theme: AppTheme.dark,
         debugShowCheckedModeBanner: false,
         routerConfig: goRouter,
       ),
