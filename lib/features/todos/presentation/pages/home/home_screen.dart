@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:taskee/app/extension/context_extension.dart';
+import 'package:taskee/features/todos/presentation/pages/add/add_todo_screen.dart';
 import 'package:taskee/features/widget/app_gradient.dart';
 
 import '../../../domain/entities/todo.dart';
@@ -23,7 +25,8 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.push("/${Routes.addScreen}"),
+        onPressed: () => context.gotTo(const AddTodoScreen()),
+
         child: const Icon(Icons.add),
       ),
       body: AppGradient(

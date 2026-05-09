@@ -44,7 +44,7 @@ class MyAppState extends State<MyApp> {
         BlocProvider(create: (_) => todoBloc..add(TodoStartedEvent())),
       ],
       child: MaterialApp.router(
-        title: 'Hive Todo',
+        title: 'Taskee App',
         theme: AppTheme.dark,
         debugShowCheckedModeBanner: false,
         routerConfig: goRouter,

@@ -11,6 +11,6 @@ extension ContextExtension on BuildContext {
 
   // Navigation
   void pop() => Navigator.of(this).pop();
-  void push(Widget page) =>
+  void gotTo(Widget page) =>
       Navigator.of(this).push(MaterialPageRoute(builder: (_) => page));
 }
