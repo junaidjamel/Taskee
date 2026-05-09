@@ -15,8 +15,6 @@ class HiveTodoLocalDataSource implements TodoLocalDataSource {
     await Hive.initFlutter();
     Hive.registerAdapter(TodoHiveModelAdapter());
 
-    // await Hive.deleteBoxFromDisk(_todoBoxName); //
-    // await Hive.deleteBoxFromDisk(_latestIdBoxName);
     _todoBox = await Hive.openBox<TodoHiveModel>(_todoBoxName);
     _lastIdBox = await Hive.openBox<int>(_latestIdBoxName);
   }

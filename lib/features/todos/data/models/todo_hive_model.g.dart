@@ -27,7 +27,7 @@ class TodoHiveModelAdapter extends TypeAdapter<TodoHiveModel> {
   @override
   void write(BinaryWriter writer, TodoHiveModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)

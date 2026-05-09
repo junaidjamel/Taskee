@@ -42,12 +42,12 @@ class TaskWidget extends StatelessWidget {
                 },
                 onClickDelete: () {
                   context.read<TodoBloc>().add(TodoItemDeletedEvent(todo.id));
-                  AppUtils.showSnackBar(
-                    context: context,
-                    message: '${todo.title} is deleted',
-                    label: 'Undo',
-                    onPress: () => onClickUndo(todo, context),
-                  );
+                  // AppUtils.showSnackBar(
+                  //   context: context,
+                  //   message: '${todo.title} is deleted',
+                  //   label: 'Undo',
+                  //   onPress: () => onClickUndo(todo, context),
+                  // );
                 },
                 onToggleComplete: () {
                   context.read<TodoBloc>().add(
