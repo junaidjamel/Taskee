@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 import 'package:hive/hive.dart';
-import 'package:taskee/app/bloc/todo_bloc.dart';
+import 'package:taskee/features/todos/presentation/bloc/todo_bloc.dart';
 import 'package:taskee/app/routing/go_router.dart';
-import 'app/bloc/todo_event.dart';
-import 'app/di/dependency_injection.dart';
-import 'cache/database/app_database.dart';
+import 'package:taskee/features/todos/presentation/bloc/todo_event.dart';
+import 'package:taskee/di/dependency_injection.dart';
+import 'package:taskee/features/todos/data/datasources/hive_todo_local_datasource.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 Future<void> main() async {
-  AppDatabase database = AppDatabase();
-  await database.initialize();
-  configureDependencies(database);
+  final hiveTodoLocalDataSource = HiveTodoLocalDataSource();
+  await hiveTodoLocalDataSource.initialize();
+  configureDependencies(hiveTodoLocalDataSource: hiveTodoLocalDataSource);
   runApp(MyApp());
 }
 
