@@ -16,9 +16,13 @@ class TodoEntity {
   @HiveField(3)
   final bool isCompleted;
 
+  @HiveField(4)
+  final DateTime? dueAt;
+
   TodoEntity(
       {required this.id,
       required this.title,
       required this.description,
-      required this.isCompleted});
+      required this.isCompleted,
+      this.dueAt});
 }

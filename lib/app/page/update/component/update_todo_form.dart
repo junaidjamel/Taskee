@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -23,6 +22,7 @@ class UpdateTodoFormState extends State<UpdateTodoForm> {
 
   late final _titleController;
   late final _descriptionController;
+  DateTime? _dueAt;
 
   @override
   void initState() {
@@ -31,6 +31,7 @@ class UpdateTodoFormState extends State<UpdateTodoForm> {
     _descriptionController = TextEditingController(
       text: widget.todo.description,
     );
+    _dueAt = widget.todo.dueAt;
   }
 
   @override
@@ -59,6 +60,13 @@ class UpdateTodoFormState extends State<UpdateTodoForm> {
                 maxLines: 3,
                 maxLength: 200,
                 validator: descriptionFieldValidator,
+              ),
+              const SizedBox(height: 24.0),
+              const Text('Due date & time'),
+              const SizedBox(height: 8.0),
+              _DueAtPicker(
+                dueAt: _dueAt,
+                onChanged: (value) => setState(() => _dueAt = value),
               ),
               const SizedBox(height: 24.0),
               Padding(
@@ -90,7 +98,73 @@ class UpdateTodoFormState extends State<UpdateTodoForm> {
       title: _titleController.text,
       description: _descriptionController.text,
       isCompleted: widget.todo.isCompleted,
+      dueAt: _dueAt,
     );
     context.read<TodoBloc>().add(TodoItemUpdatedEvent(todoVO));
+  }
+}
+
+class _DueAtPicker extends StatelessWidget {
+  const _DueAtPicker({
+    required this.dueAt,
+    required this.onChanged,
+  });
+
+  final DateTime? dueAt;
+  final ValueChanged<DateTime?> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final localizations = MaterialLocalizations.of(context);
+    final dateLabel = dueAt == null ? 'No due date' : localizations.formatFullDate(dueAt!);
+    final timeLabel = dueAt == null
+        ? 'No time'
+        : localizations.formatTimeOfDay(
+            TimeOfDay.fromDateTime(dueAt!),
+            alwaysUse24HourFormat: MediaQuery.of(context).alwaysUse24HourFormat,
+          );
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        OutlinedButton(
+          key: const Key('updateTodo_dueDate_button'),
+          onPressed: () async {
+            final now = DateTime.now();
+            final initial = dueAt ?? now;
+            final picked = await showDatePicker(
+              context: context,
+              initialDate: DateTime(initial.year, initial.month, initial.day),
+              firstDate: DateTime(now.year - 10),
+              lastDate: DateTime(now.year + 20),
+            );
+            if (picked == null) return;
+            final currentTime = dueAt == null ? const TimeOfDay(hour: 9, minute: 0) : TimeOfDay.fromDateTime(dueAt!);
+            onChanged(DateTime(picked.year, picked.month, picked.day, currentTime.hour, currentTime.minute));
+          },
+          child: Text('Date: $dateLabel'),
+        ),
+        const SizedBox(height: 8),
+        OutlinedButton(
+          key: const Key('updateTodo_dueTime_button'),
+          onPressed: () async {
+            final initial = dueAt == null ? const TimeOfDay(hour: 9, minute: 0) : TimeOfDay.fromDateTime(dueAt!);
+            final picked = await showTimePicker(context: context, initialTime: initial);
+            if (picked == null) return;
+            final base = dueAt ?? DateTime.now();
+            onChanged(DateTime(base.year, base.month, base.day, picked.hour, picked.minute));
+          },
+          child: Text('Time: $timeLabel'),
+        ),
+        if (dueAt != null) ...[
+          const SizedBox(height: 8),
+          TextButton(
+            key: const Key('updateTodo_dueClear_button'),
+            onPressed: () => onChanged(null),
+            child: const Text('Clear due date'),
+          ),
+        ],
+      ],
+    );
   }
 }

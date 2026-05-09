@@ -21,13 +21,14 @@ class TodoEntityAdapter extends TypeAdapter<TodoEntity> {
       title: fields[1] as String,
       description: fields[2] as String,
       isCompleted: fields[3] as bool,
+      dueAt: fields[4] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, TodoEntity obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class TodoEntityAdapter extends TypeAdapter<TodoEntity> {
       ..writeByte(2)
       ..write(obj.description)
       ..writeByte(3)
-      ..write(obj.isCompleted);
+      ..write(obj.isCompleted)
+      ..writeByte(4)
+      ..write(obj.dueAt);
   }
 
   @override

@@ -16,6 +16,7 @@ class TodoListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dueLabel = _dueLabel(context, todoVO.dueAt);
     return Dismissible(
       key: Key("deleted_todo_${todoVO.id}"),
       direction: DismissDirection.endToStart,
@@ -42,7 +43,10 @@ class TodoListItem extends StatelessWidget {
               : null,
         ),
         subtitle: Text(
-          todoVO.description,
+          [
+            todoVO.description,
+            if (dueLabel != null) 'Due: $dueLabel',
+          ].where((e) => e.trim().isNotEmpty).join('\n'),
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
           style: todoVO.isCompleted
@@ -64,5 +68,16 @@ class TodoListItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String? _dueLabel(BuildContext context, DateTime? dueAt) {
+    if (dueAt == null) return null;
+    final localizations = MaterialLocalizations.of(context);
+    final date = localizations.formatShortDate(dueAt);
+    final time = localizations.formatTimeOfDay(
+      TimeOfDay.fromDateTime(dueAt),
+      alwaysUse24HourFormat: MediaQuery.of(context).alwaysUse24HourFormat,
+    );
+    return '$date $time';
   }
 }

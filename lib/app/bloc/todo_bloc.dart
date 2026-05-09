@@ -45,6 +45,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
               title: e.title,
               description: e.description,
               isCompleted: e.isCompleted,
+              dueAt: e.dueAt,
             ),
           )
           .toList();
@@ -62,6 +63,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
         event.todo.title,
         event.todo.description,
         event.todo.isCompleted,
+        dueAt: event.todo.dueAt,
       );
       addTodoUseCase.execute(todoDomain);
       add(TodoStartedEvent());
@@ -81,6 +83,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
         event.todo.title,
         event.todo.description,
         event.todo.isCompleted,
+        dueAt: event.todo.dueAt,
       );
       updateTodoUseCase.execute(todoDomain);
       add(TodoStartedEvent());
@@ -100,6 +103,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
         event.todo.title,
         event.todo.description,
         event.todo.isCompleted,
+        dueAt: event.todo.dueAt,
       );
       toggleCompleteTodoUseCase.execute(todoDomain);
       add(TodoStartedEvent());
@@ -132,6 +136,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
         event.todo.title,
         event.todo.description,
         event.todo.isCompleted,
+        dueAt: event.todo.dueAt,
       );
       undoDeletedTodoUseCase.execute(todoDomain);
       add(TodoStartedEvent());

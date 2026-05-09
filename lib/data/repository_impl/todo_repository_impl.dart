@@ -11,7 +11,13 @@ class TodoRepositoryImpl extends TodoRepository {
   @override
   void addTodo(TodoDomain todo) {
     return dataSource.saveTodo(
-      TodoData(todo.id, todo.title, todo.description, todo.isCompleted),
+      TodoData(
+        todo.id,
+        todo.title,
+        todo.description,
+        todo.isCompleted,
+        dueAt: todo.dueAt,
+      ),
     );
   }
 
@@ -19,7 +25,13 @@ class TodoRepositoryImpl extends TodoRepository {
   void toggleCompleteTodo(TodoDomain todo) {
     return dataSource.updateTodo(
       todo.id,
-      TodoData(todo.id, todo.title, todo.description, !todo.isCompleted),
+      TodoData(
+        todo.id,
+        todo.title,
+        todo.description,
+        !todo.isCompleted,
+        dueAt: todo.dueAt,
+      ),
     );
   }
 
@@ -32,7 +44,15 @@ class TodoRepositoryImpl extends TodoRepository {
   List<TodoDomain> getTodoList() {
     return dataSource
         .getAllTodoList()
-        .map((e) => TodoDomain(e.id, e.title, e.description, e.isCompleted))
+        .map(
+          (e) => TodoDomain(
+            e.id,
+            e.title,
+            e.description,
+            e.isCompleted,
+            dueAt: e.dueAt,
+          ),
+        )
         .toList();
   }
 
@@ -40,7 +60,13 @@ class TodoRepositoryImpl extends TodoRepository {
   void updateTodo(TodoDomain todo) async {
     return dataSource.updateTodo(
       todo.id,
-      TodoData(todo.id, todo.title, todo.description, todo.isCompleted),
+      TodoData(
+        todo.id,
+        todo.title,
+        todo.description,
+        todo.isCompleted,
+        dueAt: todo.dueAt,
+      ),
     );
   }
 }

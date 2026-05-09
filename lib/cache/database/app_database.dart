@@ -39,6 +39,7 @@ class AppDatabase extends CRUDDataSource {
         title: todo.title,
         description: todo.description,
         isCompleted: todo.isCompleted,
+        dueAt: todo.dueAt,
       );
       await _todoBox.put(todoEntity.id, todoEntity);
       await _lastIdBox.put(_latestIdName, newLatestId);
@@ -57,6 +58,7 @@ class AppDatabase extends CRUDDataSource {
           title: todo.title,
           description: todo.description,
           isCompleted: todo.isCompleted,
+          dueAt: todo.dueAt,
         ),
       );
     } catch (error) {
@@ -85,7 +87,15 @@ class AppDatabase extends CRUDDataSource {
   @override
   List<TodoData> getAllTodoList() {
     return _todoBox.values
-        .map((e) => TodoData(e.id, e.title, e.description, e.isCompleted))
+        .map(
+          (e) => TodoData(
+            e.id,
+            e.title,
+            e.description,
+            e.isCompleted,
+            dueAt: e.dueAt as DateTime?,
+          ),
+        )
         .toList();
   }
 }

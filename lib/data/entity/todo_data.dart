@@ -3,5 +3,12 @@ class TodoData {
   final String title;
   final String description;
   final bool isCompleted;
-  TodoData(this.id, this.title, this.description, this.isCompleted);
+  final DateTime? dueAt;
+  TodoData(
+    this.id,
+    this.title,
+    this.description,
+    this.isCompleted, {
+    this.dueAt,
+  });
 }
