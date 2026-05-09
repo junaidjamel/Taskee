@@ -1,41 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:taskee/app/extension/size_extension.dart';
 import 'package:taskee/app/extension/widget_padding_extension.dart';
+import 'package:taskee/app/theme/app_typography.dart';
 
 import '../../../../domain/entities/todo.dart';
 import '../../../bloc/todo_bloc.dart';
 import '../../../bloc/todo_event.dart';
 import '../../../bloc/todo_state.dart';
+import 'package:taskee/app/helper/description_field_validator.dart.dart';
 import 'package:taskee/app/helper/title_field_validator.dart';
 
-class UpdateTodoForm extends StatefulWidget {
-  final Todo todo;
-
-  const UpdateTodoForm({super.key, required this.todo});
+class CreateTaskWidget extends StatefulWidget {
+  const CreateTaskWidget({super.key});
 
   @override
-  UpdateTodoFormState createState() => UpdateTodoFormState();
+  CreateTaskWidgetState createState() => CreateTaskWidgetState();
 }
 
-class UpdateTodoFormState extends State<UpdateTodoForm> {
+class CreateTaskWidgetState extends State<CreateTaskWidget> {
+  final _titleController = TextEditingController();
   final _todoFormKey = GlobalKey<FormState>();
 
-  late final TextEditingController _titleController;
   DateTime? _dueAt;
-
-  @override
-  void initState() {
-    super.initState();
-    _titleController = TextEditingController(text: widget.todo.title);
-    _dueAt = widget.todo.dueAt;
-  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Text('My Notes', style: AppTypography.h2),
         BlocBuilder<TodoBloc, TodoState>(
           builder: (context, state) {
             return Form(
@@ -43,19 +37,17 @@ class UpdateTodoFormState extends State<UpdateTodoForm> {
               child: ListView(
                 shrinkWrap: true,
                 children: [
-                  24.kH,
+                  const SizedBox(height: 24.0),
                   const Text('Title'),
-                  10.kH,
-
                   TextFormField(
-                    key: const Key('updateTodo_title_textFormField'),
+                    key: const Key('addTodo_title_textFormField'),
                     controller: _titleController,
                     maxLines: 1,
                     maxLength: 50,
                     validator: titleFieldValidator,
                   ),
-
                   const SizedBox(height: 24.0),
+
                   const Text('Due date & time (required)'),
                   const SizedBox(height: 8.0),
                   _DueAtPicker(
@@ -72,7 +64,7 @@ class UpdateTodoFormState extends State<UpdateTodoForm> {
                         onPressed: () {
                           if (_todoFormKey.currentState!.validate() &&
                               _dueAt != null) {
-                            _updateInfo();
+                            _addTodo();
                             context.pop();
                           } else if (_dueAt == null) {
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -84,7 +76,7 @@ class UpdateTodoFormState extends State<UpdateTodoForm> {
                             );
                           }
                         },
-                        child: const Text('Update'),
+                        child: const Text('Add'),
                       ),
                     ),
                   ),
@@ -97,15 +89,15 @@ class UpdateTodoFormState extends State<UpdateTodoForm> {
     ).paddingSymmetric(horizontal: 20);
   }
 
-  void _updateInfo() {
+  Future<void> _addTodo() async {
     final dueAt = _dueAt ?? DateTime.now();
     final todo = Todo(
-      id: widget.todo.id,
+      id: 0,
       title: _titleController.text,
-      isCompleted: widget.todo.isCompleted,
+      isCompleted: false,
       dueAt: dueAt,
     );
-    context.read<TodoBloc>().add(TodoItemUpdatedEvent(todo));
+    context.read<TodoBloc>().add(TodoItemAddedEvent(todo));
   }
 }
 
@@ -132,7 +124,7 @@ class _DueAtPicker extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         OutlinedButton(
-          key: const Key('updateTodo_dueDate_button'),
+          key: const Key('addTodo_dueDate_button'),
           onPressed: () async {
             final now = DateTime.now();
             final initial = dueAt ?? now;
@@ -160,7 +152,7 @@ class _DueAtPicker extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         OutlinedButton(
-          key: const Key('updateTodo_dueTime_button'),
+          key: const Key('addTodo_dueTime_button'),
           onPressed: () async {
             final initial = dueAt == null
                 ? const TimeOfDay(hour: 9, minute: 0)

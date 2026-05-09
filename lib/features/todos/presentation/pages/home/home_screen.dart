@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:taskee/app/extension/context_extension.dart';
 import 'package:taskee/app/extension/widget_padding_extension.dart';
 
-import 'package:taskee/features/todos/presentation/pages/add/add_todo_screen.dart';
+import 'package:taskee/features/todos/presentation/pages/add/create_task_screen.dart';
 import 'package:taskee/features/todos/presentation/pages/home/widget/task_widget.dart';
 import 'package:taskee/features/todos/presentation/pages/home/widget/user_info_widget.dart';
 import 'package:taskee/features/widget/app_gradient.dart';
@@ -22,7 +22,7 @@ class HomeScreenState extends State<HomeScreen> {
       length: 2,
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: () => context.gotTo(const AddTodoScreen()),
+          onPressed: () => context.gotTo(const CreateTaskScreen()),
           child: const Icon(Icons.add),
         ),
         body: AppGradient(

@@ -19,7 +19,6 @@ class TodoRepositoryImpl implements TodoRepository {
       Todo(
         id: todo.id,
         title: todo.title,
-        description: todo.description,
         isCompleted: !todo.isCompleted,
         dueAt: todo.dueAt,
       ).toHiveModel(),
@@ -41,4 +40,3 @@ class TodoRepositoryImpl implements TodoRepository {
     localDataSource.update(todo.id, todo.toHiveModel());
   }
 }
-

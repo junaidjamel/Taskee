@@ -40,10 +40,7 @@ class TodoListItem extends StatelessWidget {
               : null,
         ),
         subtitle: Text(
-          [
-            todo.description,
-            'Due: $dueLabel',
-          ].where((e) => e.trim().isNotEmpty).join('\n'),
+          ['Due: $dueLabel'].where((e) => e.trim().isNotEmpty).join('\n'),
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
           style: todo.isCompleted
@@ -73,4 +70,3 @@ class TodoListItem extends StatelessWidget {
     return '$date $time';
   }
 }
-

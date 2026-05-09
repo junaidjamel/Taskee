@@ -14,6 +14,9 @@ class HiveTodoLocalDataSource implements TodoLocalDataSource {
   Future<void> initialize() async {
     await Hive.initFlutter();
     Hive.registerAdapter(TodoHiveModelAdapter());
+
+    // await Hive.deleteBoxFromDisk(_todoBoxName); //
+    // await Hive.deleteBoxFromDisk(_latestIdBoxName);
     _todoBox = await Hive.openBox<TodoHiveModel>(_todoBoxName);
     _lastIdBox = await Hive.openBox<int>(_latestIdBoxName);
   }
@@ -28,7 +31,6 @@ class HiveTodoLocalDataSource implements TodoLocalDataSource {
     final entity = TodoHiveModel(
       id: newLatestId,
       title: todo.title,
-      description: todo.description,
       isCompleted: todo.isCompleted,
       dueAt: todo.dueAt,
     );
@@ -42,4 +44,3 @@ class HiveTodoLocalDataSource implements TodoLocalDataSource {
   @override
   Future<void> delete(int id) => _todoBox.delete(id);
 }
-

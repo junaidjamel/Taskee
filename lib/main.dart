@@ -13,6 +13,7 @@ Future<void> main() async {
   final hiveTodoLocalDataSource = HiveTodoLocalDataSource();
   await hiveTodoLocalDataSource.initialize();
   configureDependencies(hiveTodoLocalDataSource: hiveTodoLocalDataSource);
+
   runApp(MyApp());
 }
 

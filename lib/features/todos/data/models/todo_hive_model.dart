@@ -11,20 +11,15 @@ class TodoHiveModel {
   final String title;
 
   @HiveField(2)
-  final String description;
-
-  @HiveField(3)
   final bool isCompleted;
 
-  @HiveField(4)
+  @HiveField(3)
   final DateTime? dueAt;
 
   const TodoHiveModel({
     required this.id,
     required this.title,
-    required this.description,
     required this.isCompleted,
     required this.dueAt,
   });
 }
-

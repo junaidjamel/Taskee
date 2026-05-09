@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskee/features/widget/app_gradient.dart';
 
 import '../../../domain/entities/todo.dart';
 import 'widgets/update_todo_form.dart';
@@ -16,13 +17,7 @@ class UpdateTodoScreenState extends State<UpdateTodoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(title: const Text('Update Todo')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: UpdateTodoForm(todo: widget.todo),
-      ),
+      body: AppGradient(child: UpdateTodoForm(todo: widget.todo)),
     );
   }
 }
-

@@ -7,7 +7,6 @@ extension TodoHiveModelToDomain on TodoHiveModel {
     return Todo(
       id: id,
       title: title,
-      description: description,
       isCompleted: isCompleted,
       dueAt: dueAt ?? DateTime.now(),
     );
@@ -19,10 +18,8 @@ extension TodoDomainToHiveModel on Todo {
     return TodoHiveModel(
       id: id,
       title: title,
-      description: description,
       isCompleted: isCompleted,
       dueAt: dueAt,
     );
   }
 }
-
