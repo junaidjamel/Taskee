@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:taskee/app/extension/capital_firstletter_extension.dart';
+import 'package:taskee/app/theme/app_typography.dart';
 
 import '../../domain/entities/todo.dart';
 
@@ -27,25 +30,29 @@ class TodoListItem extends StatelessWidget {
         color: Colors.red,
         alignment: Alignment.centerRight,
         padding: const EdgeInsets.only(right: 20),
-        child: const Icon(Icons.delete, color: Colors.white),
+        child: const Icon(CupertinoIcons.delete, color: Colors.white),
       ),
       child: ListTile(
         onTap: onClickItem,
         title: Text(
-          todo.title,
+          todo.title.capitalizeFirst(),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: todo.isCompleted
-              ? const TextStyle(decoration: TextDecoration.lineThrough)
-              : null,
+              ? AppTypography.h4.copyWith(
+                  decoration: TextDecoration.lineThrough,
+                )
+              : AppTypography.h4,
         ),
         subtitle: Text(
-          ['Due: $dueLabel'].where((e) => e.trim().isNotEmpty).join('\n'),
+          [dueLabel].where((e) => e.trim().isNotEmpty).join('\n'),
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
           style: todo.isCompleted
-              ? const TextStyle(decoration: TextDecoration.lineThrough)
-              : null,
+              ? AppTypography.bodyLg.copyWith(
+                  decoration: TextDecoration.lineThrough,
+                )
+              : AppTypography.bodyLg,
         ),
         trailing: const Icon(Icons.chevron_right),
         leading: Checkbox(
