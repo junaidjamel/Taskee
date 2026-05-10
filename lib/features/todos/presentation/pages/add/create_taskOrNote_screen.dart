@@ -3,6 +3,7 @@ import 'package:taskee/app/extension/size_extension.dart';
 import 'package:taskee/app/extension/widget_padding_extension.dart';
 import 'package:taskee/app/theme/app_colors.dart';
 import 'package:taskee/app/theme/app_typography.dart';
+import 'package:taskee/features/todos/presentation/pages/add/widgets/create_note_widget.dart';
 import 'package:taskee/features/widget/app_gradient.dart';
 
 import 'widgets/create_task_widget.dart';
@@ -22,13 +23,10 @@ class CreateTaskOrNoteScreen extends StatelessWidget {
               const BackButton().paddingOnly(left: 20),
               20.kH,
 
-              // ── Tab bar ──────────────────────────────────────────────
               _buildTabBar().paddingOnly(left: 20),
 
               const Expanded(
-                child: TabBarView(
-                  children: [CreateTaskWidget(), _NoteWidget()],
-                ),
+                child: TabBarView(children: [CreateTaskWidget(), NoteWidget()]),
               ),
             ],
           ),
@@ -61,44 +59,6 @@ class CreateTaskOrNoteScreen extends StatelessWidget {
             Tab(text: 'NOTE'),
           ],
         ),
-      ),
-    );
-  }
-}
-
-// ── Invisible title tab (mirrors selected tab) ───────────────────────────────
-class _TitleTab extends StatelessWidget {
-  const _TitleTab({required this.label});
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Tab(child: Text(label, style: AppTypography.h2));
-  }
-}
-
-// ── Simple Note placeholder ───────────────────────────────────────────────────
-class _NoteWidget extends StatelessWidget {
-  const _NoteWidget();
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Icon(Icons.note_alt_outlined, size: 64, color: Colors.white38),
-          const SizedBox(height: 16),
-          Text(
-            'No notes yet',
-            style: AppTypography.h2.copyWith(color: Colors.white54),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Tap here to start writing your note',
-            style: TextStyle(fontSize: 14, color: Colors.white38),
-          ),
-        ],
       ),
     );
   }
