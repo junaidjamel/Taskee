@@ -11,6 +11,9 @@ abstract final class AppColors {
   static Color kOrange = Colors.orange;
 
   static Color kPureBlack = Colors.black;
+  static Color kGreyCard = Color(0xFF1E1E1E);
+  static Color kBorderColor = const Color(0xFF2A2A2A);
+  static Color kTabGreyColor = const Color.fromARGB(255, 108, 106, 105);
 
   static Color kWhite = Colors.white;
   static Color kgrey = Colors.grey;

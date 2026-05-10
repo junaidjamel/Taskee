@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:taskee/app/extension/context_extension.dart';
 import 'package:taskee/app/helper/app_utils.dart';
 import 'package:taskee/app/routing/app_route.dart';
+import 'package:taskee/app/theme/app_assets.dart';
 import 'package:taskee/features/todos/domain/entities/todo.dart';
 import 'package:taskee/features/todos/presentation/bloc/todo_bloc.dart';
 import 'package:taskee/features/todos/presentation/bloc/todo_event.dart';
@@ -25,7 +27,12 @@ class TaskWidget extends StatelessWidget {
         }
         if (state is TodoLoadedState) {
           if (state.todoModel.todoList.isEmpty) {
-            return const Center(child: Text('Empty'));
+            return Center(
+              child: Image.asset(
+                AppAssets.noDataImg,
+                height: context.screenHeight * .25,
+              ),
+            );
           }
           return ListView.builder(
             shrinkWrap: true,

@@ -65,7 +65,7 @@ abstract final class AppTheme {
 
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: AppColors.surfaceVariant,
+      fillColor: AppColors.kGreyCard,
       hintStyle: AppTypography.bodyMd.copyWith(color: AppColors.textMuted),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       border: OutlineInputBorder(
@@ -74,11 +74,11 @@ abstract final class AppTheme {
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: BorderSide.none,
+        borderSide: BorderSide(color: AppColors.kBorderColor, width: 1.5),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: AppColors.accent, width: 1.5),
+        borderSide: const BorderSide(color: AppColors.accent, width: 1.2),
       ),
     ),
 

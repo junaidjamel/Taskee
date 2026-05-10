@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:taskee/app/extension/context_extension.dart';
 import 'package:taskee/app/extension/widget_padding_extension.dart';
+import 'package:taskee/app/theme/app_colors.dart';
+import 'package:taskee/app/theme/app_typography.dart';
 
-import 'package:taskee/features/todos/presentation/pages/add/create_task_screen.dart';
+import 'package:taskee/features/todos/presentation/pages/add/create_taskOrNote_screen.dart';
 import 'package:taskee/features/todos/presentation/pages/home/widget/task_widget.dart';
 import 'package:taskee/features/todos/presentation/pages/home/widget/user_info_widget.dart';
 import 'package:taskee/features/widget/app_gradient.dart';
@@ -22,7 +24,7 @@ class HomeScreenState extends State<HomeScreen> {
       length: 2,
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: () => context.gotTo(const CreateTaskScreen()),
+          onPressed: () => context.gotTo(const CreateTaskOrNoteScreen()),
           child: const Icon(Icons.add),
         ),
         body: AppGradient(
@@ -55,10 +57,10 @@ class TabCardWidget extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: IntrinsicWidth(
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          margin: const EdgeInsets.all(20),
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
-            color: Colors.white10,
+            color: AppColors.kBorderColor,
             borderRadius: BorderRadius.circular(30),
           ),
           child: TabBar(
@@ -66,20 +68,16 @@ class TabCardWidget extends StatelessWidget {
             tabAlignment: TabAlignment.start,
             dividerColor: Colors.transparent,
             indicator: BoxDecoration(
-              color: const Color.fromARGB(255, 108, 106, 105),
+              color: AppColors.kTabGreyColor,
               borderRadius: BorderRadius.circular(30),
             ),
             indicatorSize: TabBarIndicatorSize.tab,
             labelColor: Colors.white,
             unselectedLabelColor: Colors.white38,
-            labelStyle: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 0.5,
-            ),
+            labelStyle: AppTypography.labelLg,
             tabs: [
-              Tab(text: 'NOTES').paddingSymmetric(horizontal: 20),
-              Tab(text: 'IMPORTANT'),
+              Tab(text: 'TASKS').paddingSymmetric(horizontal: 10),
+              Tab(text: 'NOTES').paddingSymmetric(horizontal: 10),
             ],
           ),
         ),
