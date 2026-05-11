@@ -3,7 +3,7 @@ import 'package:taskee/app/extension/size_extension.dart';
 import 'package:taskee/app/extension/widget_padding_extension.dart';
 import 'package:taskee/app/theme/app_colors.dart';
 import 'package:taskee/app/theme/app_typography.dart';
-import 'package:taskee/features/todos/presentation/pages/add/widgets/create_note_widget.dart';
+import 'package:taskee/features/notes/presentation/pages/addNote/widget/create_note_widget.dart';
 import 'package:taskee/features/widget/app_gradient.dart';
 
 import 'widgets/create_task_widget.dart';
