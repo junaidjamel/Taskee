@@ -20,8 +20,16 @@ class CreateTaskOrNoteScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const BackButton().paddingOnly(left: 20),
-              20.kH,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const BackButton().paddingOnly(left: 20),
+                  Text('Create', style: AppTypography.h2),
+                  const SizedBox(width: 48 + 20),
+                ],
+              ),
+
+              25.kH,
 
               _buildTabBar().paddingOnly(left: 20),
 
