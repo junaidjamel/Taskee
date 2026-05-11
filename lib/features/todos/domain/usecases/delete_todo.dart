@@ -6,4 +6,3 @@ class DeleteTodo {
 
   void call(int id) => repository.deleteTodo(id);
 }
-

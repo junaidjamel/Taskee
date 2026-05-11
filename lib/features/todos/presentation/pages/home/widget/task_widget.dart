@@ -8,7 +8,7 @@ import 'package:taskee/features/todos/domain/entities/todo.dart';
 import 'package:taskee/features/todos/presentation/bloc/todo_bloc.dart';
 import 'package:taskee/features/todos/presentation/bloc/todo_event.dart';
 import 'package:taskee/features/todos/presentation/bloc/todo_state.dart';
-import 'package:taskee/features/todos/presentation/widgets/todo_list_item.dart';
+import 'package:taskee/features/todos/presentation/pages/home/widget/todo_list_item.dart';
 
 class TaskWidget extends StatelessWidget {
   const TaskWidget({super.key});

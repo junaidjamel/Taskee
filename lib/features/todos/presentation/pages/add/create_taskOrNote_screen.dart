@@ -34,7 +34,9 @@ class CreateTaskOrNoteScreen extends StatelessWidget {
               _buildTabBar().paddingOnly(left: 20),
 
               const Expanded(
-                child: TabBarView(children: [CreateTaskWidget(), NoteWidget()]),
+                child: TabBarView(
+                  children: [CreateTaskWidget(), CreateNoteWidget()],
+                ),
               ),
             ],
           ),

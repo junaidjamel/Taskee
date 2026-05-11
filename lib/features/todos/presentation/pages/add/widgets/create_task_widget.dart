@@ -47,7 +47,7 @@ class CreateTaskWidgetState extends State<CreateTaskWidget> {
                     controller: _titleController,
                     maxLines: 1,
 
-                    validator: titleFieldValidator,
+                    validator: todoFieldValidator,
                     decoration: InputDecoration(
                       hintText: 'Write Task title ...',
                       hintStyle: AppTypography.bodyMd.copyWith(

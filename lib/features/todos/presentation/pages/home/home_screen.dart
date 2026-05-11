@@ -6,6 +6,7 @@ import 'package:taskee/app/theme/app_colors.dart';
 import 'package:taskee/app/theme/app_typography.dart';
 
 import 'package:taskee/features/todos/presentation/pages/add/create_taskOrNote_screen.dart';
+import 'package:taskee/features/todos/presentation/pages/home/widget/note_widget.dart';
 import 'package:taskee/features/todos/presentation/pages/home/widget/task_widget.dart';
 import 'package:taskee/features/todos/presentation/pages/home/widget/user_info_widget.dart';
 import 'package:taskee/features/widget/app_gradient.dart';
@@ -34,9 +35,10 @@ class HomeScreenState extends State<HomeScreen> {
               const TabCardWidget(),
               const Expanded(
                 child: TabBarView(
+                  physics: NeverScrollableScrollPhysics(),
                   children: [
                     TaskWidget(),
-                    Center(child: Text('Important')), // IMPORTANT tab content
+                    NoteWidget(), // IMPORTANT tab content
                   ],
                 ),
               ),

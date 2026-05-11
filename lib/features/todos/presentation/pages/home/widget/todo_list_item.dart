@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:taskee/app/extension/capital_firstletter_extension.dart';
 import 'package:taskee/app/theme/app_typography.dart';
 
-import '../../domain/entities/todo.dart';
+import '../../../../domain/entities/todo.dart';
 
 class TodoListItem extends StatelessWidget {
   final Todo todo;

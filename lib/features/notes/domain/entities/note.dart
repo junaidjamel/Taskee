@@ -1,5 +1,3 @@
-import 'package:taskee/features/todos/domain/entities/todo.dart';
-
 class Note {
   final int id;
   final String note;

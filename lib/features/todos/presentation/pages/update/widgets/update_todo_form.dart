@@ -52,7 +52,7 @@ class UpdateTodoFormState extends State<UpdateTodoForm> {
                     controller: _titleController,
                     maxLines: 1,
                     maxLength: 50,
-                    validator: titleFieldValidator,
+                    validator: todoFieldValidator,
                   ),
 
                   const SizedBox(height: 24.0),

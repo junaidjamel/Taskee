@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:taskee/app/extension/size_extension.dart';
 import 'package:taskee/app/extension/widget_padding_extension.dart';
 import 'package:taskee/app/helper/title_field_validator.dart';
-import 'package:taskee/app/theme/app_typography.dart';
+import 'package:taskee/features/notes/domain/entities/note.dart';
+import 'package:taskee/features/notes/presentation/bloc/note_bloc.dart';
+import 'package:taskee/features/notes/presentation/bloc/note_event.dart';
 import 'package:taskee/features/widget/app_button.dart';
 
-class NoteWidget extends StatefulWidget {
-  const NoteWidget({super.key});
+class CreateNoteWidget extends StatefulWidget {
+  const CreateNoteWidget({super.key});
 
   @override
-  State<NoteWidget> createState() => _NoteWidgetState();
+  State<CreateNoteWidget> createState() => _CreateNoteWidgetState();
 }
 
-class _NoteWidgetState extends State<NoteWidget> {
-  final _titleController = TextEditingController();
-  final _todoFormKey = GlobalKey<FormState>();
-
-  DateTime? _dueAt;
+class _CreateNoteWidgetState extends State<CreateNoteWidget> {
+  final _noteController = TextEditingController();
+  final _form = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class _NoteWidgetState extends State<NoteWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Form(
-          key: _todoFormKey,
+          key: _form,
           child: ListView(
             shrinkWrap: true,
             children: [
@@ -33,14 +35,10 @@ class _NoteWidgetState extends State<NoteWidget> {
               10.kH,
               TextFormField(
                 key: const Key('addTodo_title_textFormField'),
-                controller: _titleController,
+                controller: _noteController,
                 maxLines: 8,
 
-                validator: titleFieldValidator,
-                // decoration: InputDecoration(
-                //   hintText: 'Task Name',
-                //   hintStyle: AppTypography.bodyMd.copyWith(),
-                // ),
+                validator: noteFieldValidator,
               ),
 
               60.kH,
@@ -48,15 +46,9 @@ class _NoteWidgetState extends State<NoteWidget> {
               AppButton(
                 text: 'Create Note',
                 onTap: () {
-                  if (_todoFormKey.currentState!.validate() && _dueAt != null) {
-                    // _addTodo();
-                    // context.pop();
-                  } else if (_dueAt == null) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Please select due date and time.'),
-                      ),
-                    );
+                  if (_form.currentState!.validate()) {
+                    _addNote();
+                    context.pop();
                   }
                 },
               ),
@@ -65,5 +57,14 @@ class _NoteWidgetState extends State<NoteWidget> {
         ),
       ],
     ).paddingSymmetric(horizontal: 20);
+  }
+
+  Future<void> _addNote() async {
+    final note = Note(
+      id: 0,
+      note: _noteController.text,
+      createdAt: DateTime.now(),
+    );
+    context.read<NoteBloc>().add(NoteItemAddedEvent(note));
   }
 }
