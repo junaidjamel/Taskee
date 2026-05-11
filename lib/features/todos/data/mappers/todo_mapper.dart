@@ -1,5 +1,5 @@
 import '../../domain/entities/todo.dart';
-import '../models/todo_hive_model.dart';
+import '../model/todo_hive_model.dart';
 
 extension TodoHiveModelToDomain on TodoHiveModel {
   Todo toDomain() {

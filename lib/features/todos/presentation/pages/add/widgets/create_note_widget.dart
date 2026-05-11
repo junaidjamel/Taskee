@@ -34,13 +34,13 @@ class _NoteWidgetState extends State<NoteWidget> {
               TextFormField(
                 key: const Key('addTodo_title_textFormField'),
                 controller: _titleController,
-                maxLines: 6,
+                maxLines: 8,
 
                 validator: titleFieldValidator,
-                decoration: InputDecoration(
-                  hintText: 'Task Name',
-                  hintStyle: AppTypography.bodyMd,
-                ),
+                // decoration: InputDecoration(
+                //   hintText: 'Task Name',
+                //   hintStyle: AppTypography.bodyMd.copyWith(),
+                // ),
               ),
 
               60.kH,

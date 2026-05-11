@@ -6,7 +6,7 @@ import 'package:taskee/features/todos/presentation/bloc/todo_bloc.dart';
 import 'package:taskee/app/routing/go_router.dart';
 import 'package:taskee/features/todos/presentation/bloc/todo_event.dart';
 import 'package:taskee/di/dependency_injection.dart';
-import 'package:taskee/features/todos/data/datasources/hive_todo_local_datasource.dart';
+import 'package:taskee/features/todos/data/datasource/hive_todo_local_datasource.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 Future<void> main() async {
@@ -44,11 +44,16 @@ class MyAppState extends State<MyApp> {
       providers: [
         BlocProvider(create: (_) => todoBloc..add(TodoStartedEvent())),
       ],
-      child: MaterialApp.router(
-        title: 'Taskee App',
-        theme: AppTheme.dark,
-        debugShowCheckedModeBanner: false,
-        routerConfig: goRouter,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+
+        child: MaterialApp.router(
+          title: 'Taskee App',
+          theme: AppTheme.dark,
+          debugShowCheckedModeBanner: false,
+          routerConfig: goRouter,
+        ),
       ),
     );
   }

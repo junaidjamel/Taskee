@@ -1,4 +1,4 @@
-import '../models/todo_hive_model.dart';
+import '../model/todo_hive_model.dart';
 
 abstract class TodoLocalDataSource {
   List<TodoHiveModel> getAll();
@@ -6,4 +6,3 @@ abstract class TodoLocalDataSource {
   Future<void> update(int id, TodoHiveModel todo);
   Future<void> delete(int id);
 }
-

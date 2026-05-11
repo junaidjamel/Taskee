@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:taskee/app/extension/size_extension.dart';
 import 'package:taskee/app/extension/widget_padding_extension.dart';
+import 'package:taskee/app/theme/app_colors.dart';
 import 'package:taskee/app/theme/app_typography.dart';
 import 'package:taskee/features/todos/presentation/pages/add/widgets/time_date_picker_widget.dart';
 import 'package:taskee/features/widget/app_button.dart';
@@ -48,8 +49,10 @@ class CreateTaskWidgetState extends State<CreateTaskWidget> {
 
                     validator: titleFieldValidator,
                     decoration: InputDecoration(
-                      hintText: 'Task Name',
-                      hintStyle: AppTypography.bodyMd,
+                      hintText: 'Write Task title ...',
+                      hintStyle: AppTypography.bodyMd.copyWith(
+                        color: AppColors.kgrey,
+                      ),
                     ),
                   ),
                   30.kH,

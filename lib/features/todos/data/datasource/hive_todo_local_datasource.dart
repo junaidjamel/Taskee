@@ -1,6 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../models/todo_hive_model.dart';
+import '../model/todo_hive_model.dart';
 import 'todo_local_datasource.dart';
 
 const String _todoBoxName = 'todoBox';
