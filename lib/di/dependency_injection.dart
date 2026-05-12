@@ -1,25 +1,25 @@
 import 'package:get_it/get_it.dart';
 
-import 'package:taskee/features/notes/data/datasource/hive_note_local_datasource.dart';
-import 'package:taskee/features/notes/data/datasource/note_local_datasource.dart';
-import 'package:taskee/features/notes/data/repository/note_repository_impl.dart';
-import 'package:taskee/features/notes/domain/repository/note_repository.dart';
-import 'package:taskee/features/notes/domain/usecase/add_note.dart';
-import 'package:taskee/features/notes/domain/usecase/delete_note.dart';
-import 'package:taskee/features/notes/domain/usecase/get_all_notes.dart';
-import 'package:taskee/features/notes/domain/usecase/update_note.dart';
-import 'package:taskee/features/notes/presentation/bloc/note_bloc.dart';
-import 'package:taskee/features/todos/data/datasource/hive_todo_local_datasource.dart';
-import 'package:taskee/features/todos/data/datasource/todo_local_datasource.dart';
-import 'package:taskee/features/todos/data/repositorie/todo_repository_impl.dart';
-import 'package:taskee/features/todos/domain/repositories/todo_repository.dart';
-import 'package:taskee/features/todos/domain/usecases/add_todo.dart';
-import 'package:taskee/features/todos/domain/usecases/delete_todo.dart';
-import 'package:taskee/features/todos/domain/usecases/get_all_todos.dart';
-import 'package:taskee/features/todos/domain/usecases/toggle_complete_todo.dart';
-import 'package:taskee/features/todos/domain/usecases/undo_deleted_todo.dart';
-import 'package:taskee/features/todos/domain/usecases/update_todo.dart';
-import 'package:taskee/features/todos/presentation/bloc/todo_bloc.dart';
+import 'package:taskee/features/note/data/datasource/hive_note_local_datasource.dart';
+import 'package:taskee/features/note/data/datasource/note_local_datasource.dart';
+import 'package:taskee/features/note/data/repository/note_repository_impl.dart';
+import 'package:taskee/features/note/domain/repository/note_repository.dart';
+import 'package:taskee/features/note/domain/usecase/add_note.dart';
+import 'package:taskee/features/note/domain/usecase/delete_note.dart';
+import 'package:taskee/features/note/domain/usecase/get_all_notes.dart';
+import 'package:taskee/features/note/domain/usecase/update_note.dart';
+import 'package:taskee/features/note/presentation/bloc/note_bloc.dart';
+import 'package:taskee/features/todo/data/datasource/hive_todo_local_datasource.dart';
+import 'package:taskee/features/todo/data/datasource/todo_local_datasource.dart';
+import 'package:taskee/features/todo/data/repositorie/todo_repository_impl.dart';
+import 'package:taskee/features/todo/domain/repositories/todo_repository.dart';
+import 'package:taskee/features/todo/domain/usecases/add_todo.dart';
+import 'package:taskee/features/todo/domain/usecases/delete_todo.dart';
+import 'package:taskee/features/todo/domain/usecases/get_all_todos.dart';
+import 'package:taskee/features/todo/domain/usecases/toggle_complete_todo.dart';
+import 'package:taskee/features/todo/domain/usecases/undo_deleted_todo.dart';
+import 'package:taskee/features/todo/domain/usecases/update_todo.dart';
+import 'package:taskee/features/todo/presentation/bloc/todo_bloc.dart';
 
 final GetIt getIt = GetIt.instance;
 

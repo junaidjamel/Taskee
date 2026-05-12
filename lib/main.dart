@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:taskee/app/theme/app_theme.dart';
-import 'package:taskee/features/notes/data/datasource/hive_note_local_datasource.dart';
-import 'package:taskee/features/notes/presentation/bloc/note_bloc.dart';
-import 'package:taskee/features/notes/presentation/bloc/note_event.dart';
-import 'package:taskee/features/todos/presentation/bloc/todo_bloc.dart';
+import 'package:taskee/features/note/data/datasource/hive_note_local_datasource.dart';
+import 'package:taskee/features/note/presentation/bloc/note_bloc.dart';
+import 'package:taskee/features/note/presentation/bloc/note_event.dart';
+import 'package:taskee/features/todo/presentation/bloc/todo_bloc.dart';
 import 'package:taskee/app/routing/go_router.dart';
-import 'package:taskee/features/todos/presentation/bloc/todo_event.dart';
+import 'package:taskee/features/todo/presentation/bloc/todo_event.dart';
 import 'package:taskee/di/dependency_injection.dart';
-import 'package:taskee/features/todos/data/datasource/hive_todo_local_datasource.dart';
+import 'package:taskee/features/todo/data/datasource/hive_todo_local_datasource.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 Future<void> main() async {
