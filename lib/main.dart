@@ -5,6 +5,7 @@ import 'package:taskee/app/theme/app_theme.dart';
 import 'package:taskee/features/note/data/datasource/hive_note_local_datasource.dart';
 import 'package:taskee/features/note/presentation/bloc/note_bloc.dart';
 import 'package:taskee/features/note/presentation/bloc/note_event.dart';
+import 'package:taskee/features/todo/data/datasource/notification_service.dart';
 import 'package:taskee/features/todo/presentation/bloc/todo_bloc.dart';
 import 'package:taskee/app/routing/go_router.dart';
 import 'package:taskee/features/todo/presentation/bloc/todo_event.dart';
@@ -21,6 +22,7 @@ Future<void> main() async {
 
   final hiveNoteLocalDatasource = HiveNoteLocalDatasource();
   await hiveNoteLocalDatasource.initialize();
+  await NotificationService().init();
 
   configureDependencies(
     hiveTodoLocalDataSource: hiveTodoLocalDataSource,

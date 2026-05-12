@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:taskee/features/todo/domain/usecases/cancel_task_notification.dart';
+import 'package:taskee/features/todo/domain/usecases/schedule_task_notification.dart';
 
 import '../../domain/usecases/add_todo.dart';
 import '../../domain/usecases/delete_todo.dart';
@@ -17,6 +19,8 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
   final ToggleCompleteTodo toggleCompleteTodo;
   final DeleteTodo deleteTodo;
   final UndoDeletedTodo undoDeletedTodo;
+  final ScheduleTaskNotification scheduleTaskNotification;
+  final CancelTaskNotification cancelTaskNotification;
 
   TodoBloc({
     required this.getAllTodos,
@@ -25,6 +29,8 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     required this.toggleCompleteTodo,
     required this.deleteTodo,
     required this.undoDeletedTodo,
+    required this.scheduleTaskNotification,
+    required this.cancelTaskNotification,
   }) : super(TodoLoadingState()) {
     on<TodoStartedEvent>(_onStarted);
     on<TodoItemAddedEvent>(_onItemAdded);
@@ -44,20 +50,26 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     }
   }
 
-  void _onItemAdded(TodoItemAddedEvent event, Emitter<TodoState> emit) {
+  void _onItemAdded(TodoItemAddedEvent event, Emitter<TodoState> emit) async {
     emit(TodoLoadingState());
     try {
       addTodo(event.todo);
+      await scheduleTaskNotification(event.todo);
       add(TodoStartedEvent());
     } catch (_) {
       emit(const TodoErrorState());
     }
   }
 
-  void _onItemUpdated(TodoItemUpdatedEvent event, Emitter<TodoState> emit) {
+  void _onItemUpdated(
+    TodoItemUpdatedEvent event,
+    Emitter<TodoState> emit,
+  ) async {
     emit(TodoLoadingState());
     try {
       updateTodo(event.todo);
+      await cancelTaskNotification(event.todo.id);
+      await scheduleTaskNotification(event.todo);
       add(TodoStartedEvent());
     } catch (_) {
       emit(const TodoErrorState());
@@ -67,20 +79,28 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
   void _onItemToggleCompleted(
     TodoItemToggleCompletedEvent event,
     Emitter<TodoState> emit,
-  ) {
+  ) async {
     emit(TodoLoadingState());
     try {
       toggleCompleteTodo(event.todo);
+      //  cancel notification if task is completed
+      if (!event.todo.isCompleted) {
+        await cancelTaskNotification(event.todo.id);
+      }
       add(TodoStartedEvent());
     } catch (_) {
       emit(const TodoErrorState());
     }
   }
 
-  void _onItemDeleted(TodoItemDeletedEvent event, Emitter<TodoState> emit) {
+  void _onItemDeleted(
+    TodoItemDeletedEvent event,
+    Emitter<TodoState> emit,
+  ) async {
     emit(TodoLoadingState());
     try {
       deleteTodo(event.id);
+      await cancelTaskNotification(event.id);
       add(TodoStartedEvent());
     } catch (_) {
       emit(const TodoErrorState());
@@ -90,10 +110,11 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
   void _onItemUndoDeleted(
     TodoItemUndoDeletedEvent event,
     Emitter<TodoState> emit,
-  ) {
+  ) async {
     emit(TodoLoadingState());
     try {
       undoDeletedTodo(event.todo);
+      await scheduleTaskNotification(event.todo);
       add(TodoStartedEvent());
     } catch (_) {
       emit(const TodoErrorState());
