@@ -15,20 +15,30 @@ import '../../../bloc/todo_state.dart';
 import 'package:taskee/app/helper/title_field_validator.dart';
 
 class CreateTaskWidget extends StatefulWidget {
-  const CreateTaskWidget({super.key});
+  final Todo? todo;
+
+  const CreateTaskWidget({super.key, this.todo});
 
   @override
   CreateTaskWidgetState createState() => CreateTaskWidgetState();
 }
 
 class CreateTaskWidgetState extends State<CreateTaskWidget> {
-  final _titleController = TextEditingController();
+  late final TextEditingController _titleController;
   final _todoFormKey = GlobalKey<FormState>();
-
   DateTime? _dueAt;
 
   @override
+  void initState() {
+    super.initState();
+    _titleController = TextEditingController(text: widget.todo?.title ?? '');
+    _dueAt = widget.todo?.dueAt;
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final isUpdating = widget.todo != null;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -65,11 +75,11 @@ class CreateTaskWidgetState extends State<CreateTaskWidget> {
                   60.kH,
 
                   AppButton(
-                    text: 'Create Task',
+                    text: isUpdating ? 'Update Task' : 'Create Task',
                     onTap: () {
                       if (_todoFormKey.currentState!.validate() &&
                           _dueAt != null) {
-                        _addTodo();
+                        isUpdating ? _updateTodo() : _addTodo();
                         context.pop();
                       } else if (_dueAt == null) {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -98,5 +108,16 @@ class CreateTaskWidgetState extends State<CreateTaskWidget> {
       dueAt: dueAt,
     );
     context.read<TodoBloc>().add(TodoItemAddedEvent(todo));
+  }
+
+  void _updateTodo() {
+    final dueAt = _dueAt ?? DateTime.now();
+    final todo = Todo(
+      id: widget.todo!.id,
+      title: _titleController.text,
+      isCompleted: widget.todo!.isCompleted,
+      dueAt: dueAt,
+    );
+    context.read<TodoBloc>().add(TodoItemUpdatedEvent(todo));
   }
 }

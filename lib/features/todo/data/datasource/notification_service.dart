@@ -58,7 +58,7 @@ class NotificationService {
 
     await _plugin.zonedSchedule(
       id: id,
-      title: 'Your task is due at ${_formatTime(dueAt)}',
+      title: 'Your task $title is due at ${_formatTime(dueAt)}',
       scheduledDate: scheduledTime,
       body: '',
       notificationDetails: details,

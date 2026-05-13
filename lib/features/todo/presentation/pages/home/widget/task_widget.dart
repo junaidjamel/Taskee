@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:taskee/app/extension/context_extension.dart';
-import 'package:taskee/app/routing/app_route.dart';
 import 'package:taskee/app/theme/app_assets.dart';
 import 'package:taskee/features/todo/domain/entities/todo.dart';
 import 'package:taskee/features/todo/presentation/bloc/todo_bloc.dart';
 import 'package:taskee/features/todo/presentation/bloc/todo_event.dart';
 import 'package:taskee/features/todo/presentation/bloc/todo_state.dart';
+import 'package:taskee/features/todo/presentation/pages/add/create_taskOrNote_screen.dart';
 import 'package:taskee/features/todo/presentation/pages/home/widget/todo_list_item.dart';
 
 class TaskWidget extends StatelessWidget {
@@ -41,10 +40,11 @@ class TaskWidget extends StatelessWidget {
               return TodoListItem(
                 todo: todo,
                 onClickItem: () {
-                  context.push(
-                    "/${Routes.updateScreen}",
-                    extra: {"todo": todo},
-                  );
+                  // context.push(
+                  //   "/${Routes.updateScreen}",
+                  //   extra: {"todo": todo},
+                  // );
+                  context.gotTo(CreateTaskOrNoteScreen(todo: todo));
                 },
                 onClickDelete: () {
                   context.read<TodoBloc>().add(TodoItemDeletedEvent(todo.id));

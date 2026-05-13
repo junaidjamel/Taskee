@@ -4,12 +4,19 @@ import 'package:taskee/app/extension/widget_padding_extension.dart';
 import 'package:taskee/app/theme/app_colors.dart';
 import 'package:taskee/app/theme/app_typography.dart';
 import 'package:taskee/features/note/presentation/pages/addNote/widget/create_note_widget.dart';
+import 'package:taskee/features/todo/domain/entities/todo.dart';
 import 'package:taskee/features/widget/app_gradient.dart';
 
 import 'widgets/create_task_widget.dart';
 
 class CreateTaskOrNoteScreen extends StatelessWidget {
-  const CreateTaskOrNoteScreen({super.key});
+  final bool isUpdateTaskscreen;
+  final Todo? todo;
+  const CreateTaskOrNoteScreen({
+    super.key,
+    this.isUpdateTaskscreen = false,
+    this.todo,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +40,12 @@ class CreateTaskOrNoteScreen extends StatelessWidget {
 
               _buildTabBar().paddingOnly(left: 20),
 
-              const Expanded(
+              Expanded(
                 child: TabBarView(
-                  children: [CreateTaskWidget(), CreateNoteWidget()],
+                  children: [
+                    CreateTaskWidget(todo: todo),
+                    CreateNoteWidget(),
+                  ],
                 ),
               ),
             ],
