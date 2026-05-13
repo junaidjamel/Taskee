@@ -66,7 +66,7 @@ class MyAppState extends State<MyApp> {
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
 
         child: MaterialApp.router(
-          title: 'Taskee App',
+          title: 'Taskee',
           theme: AppTheme.dark,
           debugShowCheckedModeBanner: false,
           routerConfig: goRouter,

@@ -60,10 +60,9 @@ class NotificationService {
       id: id,
       title: 'Your task is due at ${_formatTime(dueAt)}',
       scheduledDate: scheduledTime,
+      body: '',
       notificationDetails: details,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      // uiLocalNotificationDateInterpretation:
-      //     UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 
