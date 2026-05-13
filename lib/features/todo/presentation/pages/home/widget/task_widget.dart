@@ -40,10 +40,6 @@ class TaskWidget extends StatelessWidget {
               return TodoListItem(
                 todo: todo,
                 onClickItem: () {
-                  // context.push(
-                  //   "/${Routes.updateScreen}",
-                  //   extra: {"todo": todo},
-                  // );
                   context.gotTo(CreateTaskOrNoteScreen(todo: todo));
                 },
                 onClickDelete: () {
