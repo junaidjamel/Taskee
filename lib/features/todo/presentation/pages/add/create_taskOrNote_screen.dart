@@ -7,7 +7,7 @@ import 'package:taskee/features/note/presentation/pages/addNote/widget/create_no
 import 'package:taskee/features/todo/domain/entities/todo.dart';
 import 'package:taskee/features/widget/app_gradient.dart';
 
-import 'widgets/create_task_widget.dart';
+import 'widgets/create_orUpdate_task_widget.dart';
 
 class CreateTaskOrNoteScreen extends StatelessWidget {
   final bool isUpdateTaskscreen;
@@ -46,7 +46,7 @@ class CreateTaskOrNoteScreen extends StatelessWidget {
               Expanded(
                 child: TabBarView(
                   children: [
-                    CreateTaskWidget(todo: todo),
+                    CreateOrUpdateTaskWidget(todo: todo),
                     CreateNoteWidget(),
                   ],
                 ),
