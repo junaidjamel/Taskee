@@ -31,7 +31,10 @@ class CreateTaskOrNoteScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const BackButton().paddingOnly(left: 20),
-                  Text('Create', style: AppTypography.h2),
+                  Text(
+                    isUpdateTaskscreen ? 'Update' : 'Create',
+                    style: AppTypography.h2,
+                  ),
                   const SizedBox(width: 48 + 20),
                 ],
               ),

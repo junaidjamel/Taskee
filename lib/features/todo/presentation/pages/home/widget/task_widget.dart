@@ -40,7 +40,12 @@ class TaskWidget extends StatelessWidget {
               return TodoListItem(
                 todo: todo,
                 onClickItem: () {
-                  context.gotTo(CreateTaskOrNoteScreen(todo: todo));
+                  context.gotTo(
+                    CreateTaskOrNoteScreen(
+                      todo: todo,
+                      isUpdateTaskscreen: true,
+                    ),
+                  );
                 },
                 onClickDelete: () {
                   context.read<TodoBloc>().add(TodoItemDeletedEvent(todo.id));
@@ -60,7 +65,7 @@ class TaskWidget extends StatelessWidget {
             },
           );
         }
-        return const Text('Something went wrong!');
+        return Text('State: ${state.runtimeType}');
       },
     );
   }

@@ -51,11 +51,11 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
   }
 
   void _onItemAdded(TodoItemAddedEvent event, Emitter<TodoState> emit) async {
-    emit(TodoLoadingState());
     try {
       addTodo(event.todo);
       await scheduleTaskNotification(event.todo);
-      add(TodoStartedEvent());
+      final dataList = getAllTodos();
+      emit(TodoLoadedState(TodoListModel(todoList: dataList)));
     } catch (_) {
       emit(const TodoErrorState());
     }
@@ -65,13 +65,17 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     TodoItemUpdatedEvent event,
     Emitter<TodoState> emit,
   ) async {
-    emit(TodoLoadingState());
     try {
       updateTodo(event.todo);
-      await cancelTaskNotification(event.todo.id);
+      try {
+        await cancelTaskNotification(event.todo.id);
+      } catch (_) {}
       await scheduleTaskNotification(event.todo);
-      add(TodoStartedEvent());
-    } catch (_) {
+      final dataList = getAllTodos();
+      emit(TodoLoadedState(TodoListModel(todoList: dataList)));
+    } catch (e, stackTrace) {
+      print('UPDATE ERROR: $e');
+      print('STACK: $stackTrace');
       emit(const TodoErrorState());
     }
   }
@@ -111,7 +115,6 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     TodoItemUndoDeletedEvent event,
     Emitter<TodoState> emit,
   ) async {
-    emit(TodoLoadingState());
     try {
       undoDeletedTodo(event.todo);
       await scheduleTaskNotification(event.todo);

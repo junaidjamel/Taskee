@@ -39,64 +39,70 @@ class CreateTaskWidgetState extends State<CreateTaskWidget> {
   Widget build(BuildContext context) {
     final isUpdating = widget.todo != null;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        BlocBuilder<TodoBloc, TodoState>(
-          builder: (context, state) {
-            return Form(
-              key: _todoFormKey,
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  30.kH,
-                  const Text('Title'),
-                  10.kH,
-                  TextFormField(
-                    key: const Key('addTodo_title_textFormField'),
-                    controller: _titleController,
-                    maxLines: 1,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          BlocBuilder<TodoBloc, TodoState>(
+            builder: (context, state) {
+              return Form(
+                key: _todoFormKey,
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    30.kH,
+                    const Text('Title'),
+                    10.kH,
+                    TextFormField(
+                      key: const Key('addTodo_title_textFormField'),
+                      controller: _titleController,
+                      maxLines: 1,
 
-                    validator: todoFieldValidator,
-                    decoration: InputDecoration(
-                      hintText: 'Write Task title ...',
-                      hintStyle: AppTypography.bodyMd.copyWith(
-                        color: AppColors.kgrey,
+                      validator: todoFieldValidator,
+                      decoration: InputDecoration(
+                        hintText: 'Write Task title ...',
+                        hintStyle: AppTypography.bodyMd.copyWith(
+                          color: AppColors.kgrey,
+                        ),
                       ),
                     ),
-                  ),
-                  30.kH,
-                  const Text('Time & Date (required)'),
-                  10.kH,
-                  DueAtPicker(
-                    dueAt: _dueAt,
-                    onChanged: (value) => setState(() => _dueAt = value),
-                  ),
-                  60.kH,
+                    30.kH,
+                    const Text('Time & Date (required)'),
+                    10.kH,
+                    DueAtPicker(
+                      dueAt: _dueAt,
+                      onChanged: (value) => setState(() => _dueAt = value),
+                    ),
+                    60.kH,
 
-                  AppButton(
-                    text: isUpdating ? 'Update Task' : 'Create Task',
-                    onTap: () {
-                      if (_todoFormKey.currentState!.validate() &&
-                          _dueAt != null) {
-                        isUpdating ? _updateTodo() : _addTodo();
-                        context.pop();
-                      } else if (_dueAt == null) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Please select due date and time.'),
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                ],
-              ),
-            );
-          },
-        ),
-      ],
-    ).paddingSymmetric(horizontal: 20);
+                    AppButton(
+                      text: isUpdating ? 'Update Task' : 'Create Task',
+                      onTap: () async {
+                        if (_todoFormKey.currentState!.validate() &&
+                            _dueAt != null) {
+                          if (isUpdating) {
+                            _updateTodo();
+                          } else {
+                            await _addTodo();
+                          }
+                          if (context.mounted) context.pop();
+                        } else if (_dueAt == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Please select due date and time.'),
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ],
+      ).paddingSymmetric(horizontal: 20),
+    );
   }
 
   Future<void> _addTodo() async {
