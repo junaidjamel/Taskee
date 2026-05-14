@@ -49,24 +49,31 @@ class HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => context.gotTo(const CreateTaskOrNoteScreen()),
-        child: const Icon(Icons.add),
-      ),
-      body: AppGradient(
-        child: Column(
-          children: [
-            const UserInfoWidget(),
-            TabCardWidget(controller: _tabController), // ← pass controller
-            Expanded(
-              child: TabBarView(
-                controller: _tabController, // ← pass controller
-                physics: const NeverScrollableScrollPhysics(),
-                children: const [TaskWidget(), NoteWidget()],
+    return BlocListener<TabCubit, int>(
+      listener: (context, tabIndex) {
+        if (_tabController.index != tabIndex) {
+          _tabController.animateTo(tabIndex, duration: Duration.zero);
+        }
+      },
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => context.gotTo(const CreateTaskOrNoteScreen()),
+          child: const Icon(Icons.add),
+        ),
+        body: AppGradient(
+          child: Column(
+            children: [
+              const UserInfoWidget(),
+              TabCardWidget(controller: _tabController), // ← pass controller
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController, // ← pass controller
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: const [TaskWidget(), NoteWidget()],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
