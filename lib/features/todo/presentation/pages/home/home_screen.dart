@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:taskee/app/extension/context_extension.dart';
 import 'package:taskee/app/extension/widget_padding_extension.dart';
 import 'package:taskee/app/theme/app_colors.dart';
 import 'package:taskee/app/theme/app_typography.dart';
+import 'package:taskee/features/shared/cubit/tab_cubit.dart';
 
 import 'package:taskee/features/todo/presentation/pages/add/create_taskOrNote_screen.dart';
 import 'package:taskee/features/note/presentation/pages/addNote/widget/note_widget.dart';
@@ -18,32 +20,53 @@ class HomeScreen extends StatefulWidget {
   HomeScreenState createState() => HomeScreenState();
 }
 
-class HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    final currentTab = context.read<TabCubit>().state;
+
+    _tabController = TabController(
+      length: 2,
+      vsync: this,
+      initialIndex: currentTab,
+    );
+    _tabController.addListener(() {
+      if (!_tabController.indexIsChanging) {
+        context.read<TabCubit>().changeTab(_tabController.index);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => context.gotTo(const CreateTaskOrNoteScreen()),
-          child: const Icon(Icons.add),
-        ),
-        body: AppGradient(
-          child: Column(
-            children: [
-              const UserInfoWidget(),
-              const TabCardWidget(),
-              const Expanded(
-                child: TabBarView(
-                  physics: NeverScrollableScrollPhysics(),
-                  children: [
-                    TaskWidget(),
-                    NoteWidget(), // IMPORTANT tab content
-                  ],
-                ),
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.gotTo(const CreateTaskOrNoteScreen()),
+        child: const Icon(Icons.add),
+      ),
+      body: AppGradient(
+        child: Column(
+          children: [
+            const UserInfoWidget(),
+            TabCardWidget(controller: _tabController), // ← pass controller
+            Expanded(
+              child: TabBarView(
+                controller: _tabController, // ← pass controller
+                physics: const NeverScrollableScrollPhysics(),
+                children: const [TaskWidget(), NoteWidget()],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -51,7 +74,9 @@ class HomeScreenState extends State<HomeScreen> {
 }
 
 class TabCardWidget extends StatelessWidget {
-  const TabCardWidget({super.key});
+  final TabController controller;
+
+  const TabCardWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +91,7 @@ class TabCardWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
           ),
           child: TabBar(
+            controller: controller, // ← use passed controller
             isScrollable: true,
             tabAlignment: TabAlignment.start,
             dividerColor: Colors.transparent,

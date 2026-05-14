@@ -12,7 +12,7 @@ class UserInfoWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('My Notes', style: AppTypography.h2).paddingAll(20),
+        Text('Your Task & Notes', style: AppTypography.h2).paddingAll(20),
         Row(
           children: [
             SizedBox(
@@ -39,7 +39,7 @@ class UserInfoWidget extends StatelessWidget {
               children: [
                 Text(
                   'Hi, Good Morning',
-                  style: AppTypography.bodySm.copyWith(color: AppColors.kgrey),
+                  style: AppTypography.bodyMd.copyWith(color: AppColors.kgrey),
                 ),
                 Text('Jacobe', style: AppTypography.h2),
               ],

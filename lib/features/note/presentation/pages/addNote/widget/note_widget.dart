@@ -1,6 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taskee/app/extension/context_extension.dart';
+import 'package:taskee/app/theme/app_assets.dart';
 import 'package:taskee/features/note/presentation/bloc/note_bloc.dart';
 import 'package:taskee/features/note/presentation/bloc/note_state.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
@@ -35,9 +37,9 @@ class _NoteWidgetState extends State<NoteWidget> {
 
           if (notes.isEmpty) {
             return Center(
-              child: Image.network(
-                'https://img.magnific.com/free-vector/hand-drawn-no-data-illustration_23-2150570252.jpg',
-                height: MediaQuery.of(context).size.height * .25,
+              child: Image.asset(
+                AppAssets.noDataImg,
+                height: context.screenHeight * .25,
               ),
             );
           }

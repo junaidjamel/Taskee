@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:taskee/app/theme/app_theme.dart';
 import 'package:taskee/features/note/data/datasource/hive_note_local_datasource.dart';
 import 'package:taskee/features/note/presentation/bloc/note_bloc.dart';
 import 'package:taskee/features/note/presentation/bloc/note_event.dart';
+import 'package:taskee/features/shared/cubit/tab_cubit.dart';
 import 'package:taskee/features/todo/data/datasource/notification_service.dart';
 import 'package:taskee/features/todo/presentation/bloc/todo_bloc.dart';
 import 'package:taskee/app/routing/go_router.dart';
@@ -29,11 +31,16 @@ Future<void> main() async {
     hiveNoteLocalDatasource: hiveNoteLocalDatasource,
   );
 
-  runApp(MyApp());
+  // ← load saved tab before app starts
+  final prefs = await SharedPreferences.getInstance();
+  final savedTab = prefs.getInt('selected_tab') ?? 0;
+
+  runApp(MyApp(initialTab: savedTab));
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  final int initialTab;
+  const MyApp({super.key, required this.initialTab});
 
   @override
   MyAppState createState() => MyAppState();
@@ -58,6 +65,7 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (_) => TabCubit(initialTab: widget.initialTab)),
         BlocProvider(create: (_) => todoBloc..add(TodoStartedEvent())),
         BlocProvider(create: (_) => noteBloc..add(NoteStartedEvent())),
       ],
