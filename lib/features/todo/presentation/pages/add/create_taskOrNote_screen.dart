@@ -4,7 +4,8 @@ import 'package:taskee/app/extension/size_extension.dart';
 import 'package:taskee/app/extension/widget_padding_extension.dart';
 import 'package:taskee/app/theme/app_colors.dart';
 import 'package:taskee/app/theme/app_typography.dart';
-import 'package:taskee/features/note/presentation/pages/addNote/widget/create_note_widget.dart';
+import 'package:taskee/features/note/domain/entities/note.dart';
+import 'package:taskee/features/note/presentation/pages/addNote/widget/create_orUpdate_note_widget.dart';
 import 'package:taskee/features/shared/cubit/tab_cubit.dart';
 import 'package:taskee/features/todo/domain/entities/todo.dart';
 import 'package:taskee/features/widget/app_gradient.dart';
@@ -14,10 +15,12 @@ import 'widgets/create_orUpdate_task_widget.dart';
 class CreateTaskOrNoteScreen extends StatefulWidget {
   final bool isUpdateTaskscreen;
   final Todo? todo;
+  final Note? note;
   const CreateTaskOrNoteScreen({
     super.key,
     this.isUpdateTaskscreen = false,
     this.todo,
+    this.note,
   });
 
   @override
@@ -72,14 +75,17 @@ class _CreateTaskOrNoteScreenState extends State<CreateTaskOrNoteScreen>
 
             25.kH,
 
-            _buildTabBar(_tabController).paddingOnly(left: 20),
+            if (!widget.isUpdateTaskscreen) ...[
+              _buildTabBar(_tabController).paddingOnly(left: 20),
+              15.kH,
+            ],
 
             Expanded(
               child: TabBarView(
                 controller: _tabController,
                 children: [
                   CreateOrUpdateTaskWidget(todo: widget.todo),
-                  CreateNoteWidget(),
+                  CreateOrUpdateNoteWidget(note: widget.note),
                 ],
               ),
             ),
@@ -89,7 +95,7 @@ class _CreateTaskOrNoteScreenState extends State<CreateTaskOrNoteScreen>
     );
   }
 
-  Widget _buildTabBar(controller) {
+  Widget _buildTabBar(TabController controller) {
     return Container(
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(

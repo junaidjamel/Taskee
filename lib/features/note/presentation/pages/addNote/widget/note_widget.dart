@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taskee/app/extension/context_extension.dart';
 import 'package:taskee/app/theme/app_assets.dart';
+import 'package:taskee/features/note/domain/entities/note.dart';
 import 'package:taskee/features/note/presentation/bloc/note_bloc.dart';
 import 'package:taskee/features/note/presentation/bloc/note_state.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:taskee/features/note/presentation/pages/addNote/widget/note_card.dart';
+import 'package:taskee/features/todo/presentation/pages/add/create_taskOrNote_screen.dart';
 
 class NoteWidget extends StatefulWidget {
   const NoteWidget({super.key});
@@ -61,16 +63,25 @@ class _NoteWidgetState extends State<NoteWidget> {
               right: 40,
               top: 30,
             ),
+
             cardBuilder:
                 (context, index, percentThresholdX, percentThresholdY) {
                   final note = notes[index];
                   final isFront = index % 2 == 0;
-                  return NoteCard(
-                    note: note,
-                    isLight: isFront,
-                    cardW: cardW,
-                    cardH: cardH,
-                    onDelete: () {},
+                  return GestureDetector(
+                    onTap: () => context.gotTo(
+                      CreateTaskOrNoteScreen(
+                        note: note,
+                        isUpdateTaskscreen: true,
+                      ),
+                    ),
+                    child: NoteCard(
+                      note: note,
+                      isLight: isFront,
+                      cardW: cardW,
+                      cardH: cardH,
+                      onDelete: () {},
+                    ),
                   );
                 },
             onSwipe: (previousIndex, currentIndex, direction) => true,

@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TabCubit extends Cubit<int> {
-  TabCubit({int initialTab = 0}) : super(initialTab); // ← no async loading
+  TabCubit({int initialTab = 0}) : super(initialTab);
 
   static const _key = 'selected_tab';
 

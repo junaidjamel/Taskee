@@ -9,19 +9,27 @@ import 'package:taskee/features/note/presentation/bloc/note_bloc.dart';
 import 'package:taskee/features/note/presentation/bloc/note_event.dart';
 import 'package:taskee/features/widget/app_button.dart';
 
-class CreateNoteWidget extends StatefulWidget {
-  const CreateNoteWidget({super.key});
+class CreateOrUpdateNoteWidget extends StatefulWidget {
+  final Note? note;
+  const CreateOrUpdateNoteWidget({super.key, this.note});
 
   @override
-  State<CreateNoteWidget> createState() => _CreateNoteWidgetState();
+  State<CreateOrUpdateNoteWidget> createState() =>
+      _CreateOrUpdateNoteWidgetState();
 }
 
-class _CreateNoteWidgetState extends State<CreateNoteWidget> {
-  final _noteController = TextEditingController();
+class _CreateOrUpdateNoteWidgetState extends State<CreateOrUpdateNoteWidget> {
+  late TextEditingController _noteController = TextEditingController();
   final _form = GlobalKey<FormState>();
+  @override
+  void initState() {
+    super.initState();
+    _noteController = TextEditingController(text: widget.note?.note ?? '');
+  }
 
   @override
   Widget build(BuildContext context) {
+    final isUpdating = widget.note != null;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -44,11 +52,15 @@ class _CreateNoteWidgetState extends State<CreateNoteWidget> {
               60.kH,
 
               AppButton(
-                text: 'Create Note',
-                onTap: () {
+                text: isUpdating ? 'Update Task' : 'Create Note',
+                onTap: () async {
                   if (_form.currentState!.validate()) {
-                    _addNote();
-                    context.pop();
+                    if (isUpdating) {
+                      _updateNote();
+                    } else {
+                      await _addNote();
+                    }
+                    if (context.mounted) context.pop();
                   }
                 },
               ),
@@ -66,5 +78,14 @@ class _CreateNoteWidgetState extends State<CreateNoteWidget> {
       createdAt: DateTime.now(),
     );
     context.read<NoteBloc>().add(NoteItemAddedEvent(note));
+  }
+
+  Future<void> _updateNote() async {
+    final note = Note(
+      id: widget.note!.id,
+      note: _noteController.text,
+      createdAt: DateTime.now(),
+    );
+    context.read<NoteBloc>().add(NoteItemUpdatedEvent(note));
   }
 }
