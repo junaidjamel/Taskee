@@ -2,7 +2,7 @@
 
 <br>
 
-<img src="assets/logo.png" width="140"/>
+<img src="assets/readme_logo.png" width="140"/>
 
 # Taskee
 
