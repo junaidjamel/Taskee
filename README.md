@@ -31,29 +31,29 @@ Taskee is a Flutter mobile app designed for effortless productivity. Manage your
 
 ## Features
 
-| Feature                       | Description                                                                                      |
-| ----------------------------- | ------------------------------------------------------------------------------------------------ |
-| **Task Management**           | Create, update, complete, and delete tasks with due dates and time scheduling                    |
-| **Notes**                     | Quickly jot down notes alongside your tasks, all in one app                                      |
-| **Smart Notifications**       | Get reminders at your scheduled due time — auto-cancelled when a task is marked complete         |
-| **Persistent Tab State**      | Remembers your last active tab so you're always where you left off                               |
-| **Offline-First Storage**     | All data stored locally using Hive — no internet connection required                             |
-| **Clean Dark UI**             | Polished dark theme with Google Fonts and smooth swipe interactions                              |
-| **Lightweight & Fast**        | Native performance on both Android and iOS with minimal battery and storage footprint            |
+| Feature                   | Description                                                                              |
+| ------------------------- | ---------------------------------------------------------------------------------------- |
+| **Task Management**       | Create, update, complete, and delete tasks with due dates and time scheduling            |
+| **Notes**                 | Quickly jot down notes alongside your tasks, all in one app                              |
+| **Smart Notifications**   | Get reminders at your scheduled due time — auto-cancelled when a task is marked complete |
+| **Persistent Tab State**  | Remembers your last active tab so you're always where you left off                       |
+| **Offline-First Storage** | All data stored locally using Hive — no internet connection required                     |
+| **Clean Dark UI**         | Polished dark theme with Google Fonts and smooth swipe interactions                      |
+| **Lightweight & Fast**    | Native performance on both Android and iOS with minimal battery and storage footprint    |
 
 ---
 
 ## Tech Stack
 
-| Layer             | Technology                      |
-| ----------------- | ------------------------------- |
-| Framework         | Flutter (Dart)                  |
-| State Management  | Bloc / Cubit                    |
-| Local Storage     | Hive + Hive Flutter             |
-| Notifications     | Flutter Local Notifications     |
-| Routing           | GoRouter                        |
-| Dependency Injection | GetIt                        |
-| UI Components     | Material Design 3 + Google Fonts |
+| Layer                | Technology                       |
+| -------------------- | -------------------------------- |
+| Framework            | Flutter (Dart)                   |
+| State Management     | Bloc / Cubit                     |
+| Local Storage        | Hive + Hive Flutter              |
+| Notifications        | Flutter Local Notifications      |
+| Routing              | GoRouter                         |
+| Dependency Injection | GetIt                            |
+| UI Components        | Material Design 3 + Google Fonts |
 
 ---
 
@@ -165,5 +165,5 @@ This project is licensed under the [MIT License](LICENSE).
 ---
 
 <div align="center">
-<sub>Built with Flutter &mdash; Taskee &copy; Your Name</sub>
+<sub>Built with Flutter &mdash; Taskee &copy; Junaid Jamel</sub>
 </div>
