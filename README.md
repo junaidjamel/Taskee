@@ -69,7 +69,7 @@ Taskee is a Flutter mobile app designed for effortless productivity. Manage your
 **1. Clone the repository**
 
 ```bash
-git clone https://github.com/your-username/taskee
+git clone https://github.com/junaidjamel/Taskee
 ```
 
 **2. Navigate to the project directory**
@@ -157,10 +157,10 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Author
 
-**Your Name**
+**Junaid Jamel**
 
-- Email: your@email.com
-- LinkedIn: [linkedin.com/in/your-profile](https://www.linkedin.com/in/your-profile/)
+- Email: junaidsupercoder@gmail.com
+- LinkedIn: [linkedin.com/in/junaid-jamel](https://www.linkedin.com/in/junaid-jamel/)
 
 ---
 
