@@ -101,7 +101,7 @@ Widget _buildTabBar(TabController controller) {
         indicatorSize: TabBarIndicatorSize.tab,
         dividerColor: Colors.transparent,
         overlayColor: const WidgetStatePropertyAll(Colors.transparent),
-        labelStyle: AppTypography.labelLg,
+        labelStyle: AppTypography.labelLg.copyWith(fontSize: 13.5),
         labelColor: Colors.white,
         unselectedLabelColor: Colors.white38,
         tabs: [
@@ -112,44 +112,3 @@ Widget _buildTabBar(TabController controller) {
     ),
   );
 }
-
-// class TabCardWidget extends StatelessWidget {
-//   final TabController controller;
-
-//   const TabCardWidget({super.key, required this.controller});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Align(
-//       alignment: Alignment.centerLeft,
-//       child: IntrinsicWidth(
-//         child: Container(
-//           margin: const EdgeInsets.all(20),
-//           padding: const EdgeInsets.all(4),
-//           decoration: BoxDecoration(
-//             color: AppColors.kBorderColor,
-//             borderRadius: BorderRadius.circular(30),
-//           ),
-//           child: TabBar(
-//             controller: controller, // ← use passed controller
-//             isScrollable: true,
-//             tabAlignment: TabAlignment.start,
-//             dividerColor: Colors.transparent,
-//             indicator: BoxDecoration(
-//               color: AppColors.kTabGreyColor,
-//               borderRadius: BorderRadius.circular(30),
-//             ),
-//             indicatorSize: TabBarIndicatorSize.tab,
-//             labelColor: Colors.white,
-//             unselectedLabelColor: Colors.white38,
-//             labelStyle: AppTypography.labelLg,
-//             tabs: [
-//               Tab(text: 'TASKS').paddingSymmetric(horizontal: 10),
-//               Tab(text: 'NOTES').paddingSymmetric(horizontal: 10),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

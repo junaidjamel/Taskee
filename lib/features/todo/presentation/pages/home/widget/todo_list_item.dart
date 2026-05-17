@@ -97,7 +97,7 @@ class TodoListItem extends StatelessWidget {
               ),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 2),
-                height: context.screenHeight * .08,
+                height: context.screenHeight * .075,
                 width: context.screenWidth * .015,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
