@@ -36,7 +36,6 @@ Taskee is a Flutter mobile app designed for effortless productivity. Manage your
 | **Task Management**           | Create, update, complete, and delete tasks with due dates and time scheduling                    |
 | **Notes**                     | Quickly jot down notes alongside your tasks, all in one app                                      |
 | **Smart Notifications**       | Get reminders at your scheduled due time — auto-cancelled when a task is marked complete         |
-| **Undo Delete**               | Accidentally deleted a task? Restore it instantly with one tap                                   |
 | **Persistent Tab State**      | Remembers your last active tab so you're always where you left off                               |
 | **Offline-First Storage**     | All data stored locally using Hive — no internet connection required                             |
 | **Clean Dark UI**             | Polished dark theme with Google Fonts and smooth swipe interactions                              |
