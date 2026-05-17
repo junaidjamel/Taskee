@@ -36,6 +36,7 @@ class DueAtPicker extends StatelessWidget {
             value: dateLabel,
             isPlaceholder: dueAt == null,
             onTap: () async {
+              FocusManager.instance.primaryFocus?.unfocus();
               final now = DateTime.now();
               final initial = dueAt ?? now;
               final picked = await showDatePicker(
@@ -69,6 +70,7 @@ class DueAtPicker extends StatelessWidget {
             value: timeLabel,
             isPlaceholder: dueAt == null,
             onTap: () async {
+              FocusManager.instance.primaryFocus?.unfocus();
               final initial = dueAt == null
                   ? const TimeOfDay(hour: 9, minute: 0)
                   : TimeOfDay.fromDateTime(dueAt!);

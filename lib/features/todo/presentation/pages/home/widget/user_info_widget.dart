@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taskee/app/extension/size_extension.dart';
 import 'package:taskee/app/extension/widget_padding_extension.dart';
+import 'package:taskee/app/theme/app_assets.dart';
 import 'package:taskee/app/theme/app_colors.dart';
 import 'package:taskee/app/theme/app_typography.dart';
 
@@ -27,10 +28,7 @@ class UserInfoWidget extends StatelessWidget {
                   topRight: Radius.circular(12),
                 ),
 
-                child: Image.network(
-                  'https://i.pinimg.com/236x/1b/69/6b/1b696b50d226100898b1166fa95fd4e5.jpg',
-                  fit: BoxFit.cover,
-                ),
+                child: Image.asset(AppAssets.profileImg, fit: BoxFit.cover),
               ),
             ),
             14.kW,

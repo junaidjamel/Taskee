@@ -58,6 +58,10 @@ class CreateOrUpdateTaskWidgetState extends State<CreateOrUpdateTaskWidget> {
                           const Text('Title'),
                           10.kH,
                           TextFormField(
+                            textInputAction: TextInputAction.done,
+                            onFieldSubmitted: (_) =>
+                                FocusManager.instance.primaryFocus?.unfocus(),
+
                             key: const Key('addTodo_title_textFormField'),
                             controller: _titleController,
                             maxLines: 1,
@@ -77,9 +81,12 @@ class CreateOrUpdateTaskWidgetState extends State<CreateOrUpdateTaskWidget> {
                             builder: (context, dueAt) {
                               return DueAtPicker(
                                 dueAt: dueAt,
-                                onChanged: (value) => context
-                                    .read<TaskFormCubit>()
-                                    .updateDueAt(value),
+                                onChanged: (value) {
+                                  FocusManager.instance.primaryFocus?.unfocus();
+                                  context.read<TaskFormCubit>().updateDueAt(
+                                    value,
+                                  );
+                                },
                               );
                             },
                           ),
