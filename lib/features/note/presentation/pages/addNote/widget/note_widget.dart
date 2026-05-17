@@ -1,9 +1,7 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taskee/app/extension/context_extension.dart';
 import 'package:taskee/app/theme/app_assets.dart';
-import 'package:taskee/features/note/domain/entities/note.dart';
 import 'package:taskee/features/note/presentation/bloc/note_bloc.dart';
 import 'package:taskee/features/note/presentation/bloc/note_state.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
@@ -67,7 +65,7 @@ class _NoteWidgetState extends State<NoteWidget> {
             cardBuilder:
                 (context, index, percentThresholdX, percentThresholdY) {
                   final note = notes[index];
-                  final isFront = index % 2 == 0;
+
                   return GestureDetector(
                     onTap: () => context.gotTo(
                       CreateTaskOrNoteScreen(
@@ -77,7 +75,7 @@ class _NoteWidgetState extends State<NoteWidget> {
                     ),
                     child: NoteCard(
                       note: note,
-                      isLight: isFront,
+
                       cardW: cardW,
                       cardH: cardH,
                       onDelete: () {},

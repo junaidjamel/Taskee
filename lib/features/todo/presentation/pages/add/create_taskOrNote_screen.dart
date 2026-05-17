@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taskee/app/extension/size_extension.dart';
@@ -5,6 +6,8 @@ import 'package:taskee/app/extension/widget_padding_extension.dart';
 import 'package:taskee/app/theme/app_colors.dart';
 import 'package:taskee/app/theme/app_typography.dart';
 import 'package:taskee/features/note/domain/entities/note.dart';
+import 'package:taskee/features/note/presentation/bloc/note_bloc.dart';
+import 'package:taskee/features/note/presentation/bloc/note_event.dart';
 import 'package:taskee/features/note/presentation/pages/addNote/widget/create_orUpdate_note_widget.dart';
 import 'package:taskee/features/shared/cubit/tab_cubit.dart';
 import 'package:taskee/features/todo/domain/entities/todo.dart';
@@ -69,7 +72,15 @@ class _CreateTaskOrNoteScreenState extends State<CreateTaskOrNoteScreen>
                   widget.isUpdateTaskscreen ? 'Update' : 'Create',
                   style: AppTypography.h2,
                 ),
-                const SizedBox(width: 48 + 20),
+                widget.isUpdateTaskscreen
+                    ? IconButton(
+                        onPressed: () => _showDeleteDialog(context),
+                        icon: Icon(
+                          CupertinoIcons.delete,
+                          color: AppColors.error,
+                        ),
+                      ).paddingOnly(right: 20)
+                    : const SizedBox(width: 48 + 20),
               ],
             ),
 
@@ -120,6 +131,47 @@ class _CreateTaskOrNoteScreenState extends State<CreateTaskOrNoteScreen>
             Tab(text: 'NOTE'),
           ],
         ),
+      ),
+    );
+  }
+
+  void _showDeleteDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        backgroundColor: AppColors.kGreyCard,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: BorderSide(color: AppColors.kWhite.withValues(alpha: .1)),
+        ),
+        title: const Text(
+          'Delete Task',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+        ),
+        content: Text(
+          'This action cannot be undone.',
+          style: AppTypography.bodyLg.copyWith(color: Colors.white54),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text(
+              'Cancel',
+              style: TextStyle(color: Colors.white54),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              context.read<TabCubit>().changeTab(1);
+              context.read<NoteBloc>().add(
+                NoteItemDeletedEvent(widget.note!.id),
+              );
+              Navigator.pop(context);
+            },
+            child: Text('Delete', style: TextStyle(color: AppColors.error)),
+          ),
+        ],
       ),
     );
   }

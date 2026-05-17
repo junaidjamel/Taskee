@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:taskee/features/note/domain/entities/note.dart';
 import 'package:taskee/features/note/domain/model/note_list_model.dart';
 import 'package:taskee/features/note/domain/usecase/add_note.dart';
 import 'package:taskee/features/note/domain/usecase/delete_note.dart';

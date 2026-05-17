@@ -30,45 +30,47 @@ class _CreateOrUpdateNoteWidgetState extends State<CreateOrUpdateNoteWidget> {
   @override
   Widget build(BuildContext context) {
     final isUpdating = widget.note != null;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Form(
-          key: _form,
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              30.kH,
-              const Text('Write a Note'),
-              10.kH,
-              TextFormField(
-                key: const Key('addTodo_title_textFormField'),
-                controller: _noteController,
-                maxLines: 8,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Form(
+            key: _form,
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                30.kH,
+                const Text('Write a Note'),
+                10.kH,
+                TextFormField(
+                  key: const Key('addTodo_title_textFormField'),
+                  controller: _noteController,
+                  maxLines: 8,
 
-                validator: noteFieldValidator,
-              ),
+                  validator: noteFieldValidator,
+                ),
 
-              60.kH,
+                60.kH,
 
-              AppButton(
-                text: isUpdating ? 'Update Task' : 'Create Note',
-                onTap: () async {
-                  if (_form.currentState!.validate()) {
-                    if (isUpdating) {
-                      _updateNote();
-                    } else {
-                      await _addNote();
+                AppButton(
+                  text: isUpdating ? 'Update Task' : 'Create Note',
+                  onTap: () async {
+                    if (_form.currentState!.validate()) {
+                      if (isUpdating) {
+                        _updateNote();
+                      } else {
+                        await _addNote();
+                      }
+                      if (context.mounted) context.pop();
                     }
-                    if (context.mounted) context.pop();
-                  }
-                },
-              ),
-            ],
+                  },
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
-    ).paddingSymmetric(horizontal: 20);
+        ],
+      ).paddingSymmetric(horizontal: 20),
+    );
   }
 
   Future<void> _addNote() async {

@@ -13,7 +13,7 @@ class UserInfoWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Your Task & Notes', style: AppTypography.h2).paddingAll(20),
+        Text('Plan your Day !', style: AppTypography.h2).paddingAll(20),
         Row(
           children: [
             SizedBox(

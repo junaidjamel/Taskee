@@ -11,7 +11,7 @@ const _kTextLight = Color(0xFFEFEFEF);
 
 class NoteCard extends StatelessWidget {
   final Note note;
-  final bool isLight;
+
   final double cardW;
   final double cardH;
   final VoidCallback onDelete;
@@ -19,7 +19,7 @@ class NoteCard extends StatelessWidget {
   const NoteCard({
     super.key,
     required this.note,
-    required this.isLight,
+
     required this.cardW,
     required this.cardH,
     required this.onDelete,
@@ -27,7 +27,7 @@ class NoteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return isLight ? _lightCard(context) : _glassCard(context);
+    return _lightCard(context);
   }
 
   // ── Light / accent card (always the front) ──────────────────────────────
@@ -58,48 +58,6 @@ class NoteCard extends StatelessWidget {
         tagText: _kTextDark.withValues(alpha: 0.7),
         iconColor: _kTextDark.withValues(alpha: 0.5),
         onDelete: onDelete,
-        isLight: isLight,
-      ),
-    );
-  }
-
-  Widget _glassCard(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(28),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
-        child: Container(
-          width: cardW,
-          height: cardH,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.white.withValues(alpha: 0.09),
-                Colors.white.withValues(alpha: 0.04),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            borderRadius: BorderRadius.circular(28),
-            border: Border.all(color: _kGlassBorder, width: 1.2),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.3),
-                blurRadius: 24,
-                offset: const Offset(0, 12),
-              ),
-            ],
-          ),
-          child: _CardContent(
-            note: note,
-            textColor: _kTextLight,
-            tagBg: Colors.white.withValues(alpha: 0.12),
-            tagText: _kTextLight.withValues(alpha: 0.7),
-            iconColor: _kTextLight.withValues(alpha: 0.5),
-            onDelete: onDelete,
-            isLight: isLight,
-          ),
-        ),
       ),
     );
   }
@@ -114,7 +72,6 @@ class _CardContent extends StatelessWidget {
   final Color tagText;
   final Color iconColor;
   final VoidCallback onDelete;
-  final bool isLight;
 
   const _CardContent({
     required this.note,
@@ -123,7 +80,6 @@ class _CardContent extends StatelessWidget {
     required this.tagText,
     required this.iconColor,
     required this.onDelete,
-    required this.isLight,
   });
 
   @override
@@ -191,9 +147,7 @@ class _CardContent extends StatelessWidget {
                 _formatDate(note.createdAt),
                 style: TextStyle(
                   fontSize: 16,
-                  color: isLight
-                      ? textColor.withValues(alpha: 0.5)
-                      : Colors.black,
+                  color: textColor.withValues(alpha: 0.5),
                   fontWeight: FontWeight.w500,
                   letterSpacing: 0.3,
                 ),
@@ -204,14 +158,8 @@ class _CardContent extends StatelessWidget {
                   vertical: 6,
                 ),
                 decoration: BoxDecoration(
-                  border: Border.all(
-                    color: isLight
-                        ? Colors.transparent
-                        : Colors.black.withValues(alpha: .2),
-                  ),
-                  color: isLight
-                      ? textColor.withValues(alpha: 0.1)
-                      : Colors.white.withValues(alpha: .3),
+                  border: Border.all(color: Colors.black.withValues(alpha: .2)),
+                  color: Colors.white.withValues(alpha: .3),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
@@ -220,18 +168,14 @@ class _CardContent extends StatelessWidget {
                     Icon(
                       Icons.swipe_left_alt_rounded,
                       size: 13,
-                      color: isLight
-                          ? textColor.withValues(alpha: 0.5)
-                          : Colors.black,
+                      color: Colors.black,
                     ),
                     const SizedBox(width: 4),
                     Text(
                       'swipe',
                       style: TextStyle(
                         fontSize: 14,
-                        color: isLight
-                            ? textColor.withValues(alpha: 0.5)
-                            : Colors.black,
+                        color: Colors.black,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 0.5,
                       ),
