@@ -45,12 +45,12 @@ class _CreateOrUpdateNoteWidgetState extends State<CreateOrUpdateNoteWidget> {
                 TextFormField(
                   key: const Key('addTodo_title_textFormField'),
                   controller: _noteController,
-                  maxLines: 8,
+                  maxLines: 5,
 
                   validator: noteFieldValidator,
                 ),
 
-                60.kH,
+                30.kH,
 
                 AppButton(
                   text: isUpdating ? 'Update Task' : 'Create Note',

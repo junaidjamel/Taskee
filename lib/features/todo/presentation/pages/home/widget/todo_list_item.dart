@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:taskee/app/extension/capital_firstletter_extension.dart';
+import 'package:taskee/app/extension/context_extension.dart';
+import 'package:taskee/app/extension/size_extension.dart';
+import 'package:taskee/app/theme/app_colors.dart';
 import 'package:taskee/app/theme/app_typography.dart';
-
-import '../../../../domain/entities/todo.dart';
+import 'package:taskee/features/todo/domain/entities/todo.dart';
 
 class TodoListItem extends StatelessWidget {
   final Todo todo;
@@ -22,46 +24,91 @@ class TodoListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dueLabel = _dueLabel(context, todo.dueAt);
+
     return Dismissible(
-      key: Key("deleted_todo_${todo.id}"),
+      key: Key('deleted_todo_${todo.id}'),
       direction: DismissDirection.endToStart,
-      onDismissed: (direction) => onClickDelete(),
+      onDismissed: (_) => onClickDelete(),
       background: Container(
-        color: Colors.red,
+        decoration: BoxDecoration(
+          color: AppColors.error,
+          borderRadius: BorderRadius.circular(14),
+        ),
         alignment: Alignment.centerRight,
         padding: const EdgeInsets.only(right: 20),
         child: const Icon(CupertinoIcons.delete, color: Colors.white),
       ),
-      child: ListTile(
+      child: GestureDetector(
         onTap: onClickItem,
-        title: Text(
-          todo.title.capitalizeFirst(),
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: todo.isCompleted
-              ? AppTypography.h4.copyWith(
-                  decoration: TextDecoration.lineThrough,
-                )
-              : AppTypography.h4,
-        ),
-        subtitle: Text(
-          [dueLabel].where((e) => e.trim().isNotEmpty).join('\n'),
-          maxLines: 3,
-          overflow: TextOverflow.ellipsis,
-          style: todo.isCompleted
-              ? AppTypography.bodyLg.copyWith(
-                  decoration: TextDecoration.lineThrough,
-                )
-              : AppTypography.bodyLg,
-        ),
-        trailing: const Icon(Icons.chevron_right),
-        leading: Checkbox(
-          key: Key('todo_item_checkbox_${todo.id}'),
-          shape: const ContinuousRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8)),
+        child: Container(
+          margin: const EdgeInsets.symmetric(vertical: 10),
+          decoration: BoxDecoration(
+            color: AppColors.kGreyCard,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: AppColors.kWhite.withValues(alpha: .2)),
           ),
-          value: todo.isCompleted,
-          onChanged: (_) => onToggleComplete(),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              8.kW,
+              Transform.scale(
+                scale: 1.4,
+                child: Checkbox(
+                  value: todo.isCompleted,
+                  onChanged: (_) => onToggleComplete(),
+                  activeColor: AppColors.accent,
+                  checkColor: AppColors.kBorderColor,
+                  side: BorderSide(color: AppColors.kWhite),
+                  shape: const CircleBorder(),
+                ),
+              ),
+              8.kW,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      todo.title.capitalizeFirst(),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: todo.isCompleted
+                          ? AppTypography.h4.copyWith(
+                              decoration: TextDecoration.lineThrough,
+                            )
+                          : AppTypography.h4,
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      [dueLabel].where((e) => e.trim().isNotEmpty).join('\n'),
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      style: todo.isCompleted
+                          ? AppTypography.bodyLg.copyWith(
+                              decoration: TextDecoration.lineThrough,
+                              color: AppColors.kgrey,
+                            )
+                          : AppTypography.bodyLg.copyWith(
+                              color: AppColors.kWhite.withValues(alpha: .5),
+                            ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 2),
+                height: context.screenHeight * .08,
+                width: context.screenWidth * .015,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(100),
+                    bottomRight: Radius.circular(100),
+                  ),
+                  color: AppColors.error,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

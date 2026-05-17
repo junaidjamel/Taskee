@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taskee/app/extension/context_extension.dart';
+import 'package:taskee/app/extension/widget_padding_extension.dart';
 import 'package:taskee/app/theme/app_assets.dart';
 import 'package:taskee/features/todo/domain/entities/todo.dart';
 import 'package:taskee/features/todo/presentation/bloc/todo_bloc.dart';
@@ -33,6 +34,7 @@ class TaskWidget extends StatelessWidget {
             );
           }
           return ListView.builder(
+            padding: pagePadding,
             shrinkWrap: true,
             itemCount: state.todoModel.todoList.length,
             itemBuilder: (context, index) {
