@@ -33,7 +33,7 @@ Taskee is a Flutter mobile app designed for effortless productivity. Manage your
 
 <br>
 
-<img src="assets/screenshot.png" width="140"/>
+<img src="assets/screenshot.png"/>
 
 
 ## Features
