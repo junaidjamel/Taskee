@@ -85,7 +85,6 @@ class TodoListItem extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: todo.isCompleted
                           ? AppTypography.bodyLg.copyWith(
-                              decoration: TextDecoration.lineThrough,
                               color: AppColors.kgrey,
                             )
                           : AppTypography.bodyLg.copyWith(
