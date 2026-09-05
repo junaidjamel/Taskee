@@ -1,179 +1,103 @@
-<div align="center">
+# Resource Memory
 
-<br>
+Save useful coding resources once. Find them again when a project actually needs them.
 
-<img src="assets/readme_logo.png" width="140"/>
+## MVP
 
-# Taskee
+Resource Memory is a Flutter app built from the open-source Taskee foundation. The core loop is:
 
-**Minimalist Task & Notes Manager for Android & iOS**
+**Save → Understand → Store → Search → Resurface for a project**
 
-Organize your tasks. Capture your thoughts. Stay on top of what matters.
+### Working features
 
-<br>
+- Save URLs from YouTube, GitHub, Threads, and general websites
+- Automatically enrich YouTube links with oEmbed metadata
+- Automatically enrich public GitHub repositories with repository metadata
+- Capture creator/platform context for Threads links
+- Optional server-side AI enrichment with deterministic fallback
+- Save screenshots from the photo library
+- Receive shared text, URLs, and images on Android
+- iOS Share Extension source scaffold included; Xcode target/App Group setup remains device-specific
+- Store resources locally with Hive
+- Search the personal resource library
+- Open saved links externally
+- Edit and delete saved resources
+- Describe a new project in plain language
+- Rank saved resources against the project context
+- Show why a result matched
+- Taskee-derived dark UI, typography, cards, routing patterns, and local-first structure
+- Web, iOS, and Android shell branding for Resource Memory
 
-![Flutter](https://img.shields.io/badge/Flutter-3.0+-02569B?style=flat-square&logo=flutter&logoColor=white)
-![Dart](https://img.shields.io/badge/Dart-3.0+-0175C2?style=flat-square&logo=dart&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-10B981?style=flat-square)
-![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-lightgrey?style=flat-square)
+## Product rule
 
-<br>
+The MVP exists to prove one behavior:
 
-</div>
+> A user saves something useful now, forgets about it, starts related work later, and the app brings the resource back.
 
----
+The app should reduce organizational labor rather than create more tagging work.
 
-## Overview
+## Enrichment behavior
 
-Taskee is a Flutter mobile app designed for effortless productivity. Manage your to-dos and notes in one place — with local-first storage, smart notifications, and a clean dark-themed UI that stays out of your way.
+- **YouTube:** title, creator, thumbnail, platform and retrieval context
+- **GitHub:** repository name, owner, description, language, topics and retrieval context
+- **Threads:** creator handle when available plus retrieval context
+- **Other websites:** domain-based fallback context
+- **Screenshots:** local visual-reference capture
+- **AI endpoint:** when configured, can enrich summary, why-useful, use-when, topics, and technologies; deterministic enrichment remains the fallback
 
----
+## Tech stack
 
-## Screenshots
+- Flutter / Dart
+- Hive local storage
+- GoRouter
+- Google Fonts / existing Taskee theme system
+- `http` for supported public metadata lookups and optional enrichment API
+- `image_picker` for screenshots
+- `url_launcher` for opening saved resources
+- `receive_sharing_intent` for incoming mobile shares
 
-<br>
-
-<img src="assets/screenshot.png"/>
-
-
-## Features
-
-| Feature                   | Description                                                                              |
-| ------------------------- | ---------------------------------------------------------------------------------------- |
-| **Task Management**       | Create, update, complete, and delete tasks with due dates and time scheduling            |
-| **Notes**                 | Quickly jot down notes alongside your tasks, all in one app                              |
-| **Smart Notifications**   | Get reminders at your scheduled due time — auto-cancelled when a task is marked complete |
-| **Persistent Tab State**  | Remembers your last active tab so you're always where you left off                       |
-| **Offline-First Storage** | All data stored locally using Hive — no internet connection required                     |
-| **Clean Dark UI**         | Polished dark theme with Google Fonts and smooth swipe interactions                      |
-| **Lightweight & Fast**    | Native performance on both Android and iOS with minimal battery and storage footprint    |
-
----
-
-## Tech Stack
-
-| Layer                | Technology                       |
-| -------------------- | -------------------------------- |
-| Framework            | Flutter (Dart)                   |
-| State Management     | Bloc / Cubit                     |
-| Local Storage        | Hive + Hive Flutter              |
-| Notifications        | Flutter Local Notifications      |
-| Routing              | GoRouter                         |
-| Dependency Injection | GetIt                            |
-| UI Components        | Material Design 3 + Google Fonts |
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- [Flutter SDK](https://docs.flutter.dev/get-started/install) v3.0 or higher
-- [Dart](https://dart.dev/get-dart) — bundled with Flutter
-
-### Installation
-
-**1. Clone the repository**
-
-```bash
-git clone https://github.com/junaidjamel/Taskee
-```
-
-**2. Navigate to the project directory**
-
-```bash
-cd taskee
-```
-
-**3. Install dependencies**
+## Run locally
 
 ```bash
 flutter pub get
-```
-
-**4. Generate Hive adapters**
-
-```bash
-dart run build_runner build --delete-conflicting-outputs
-```
-
-**5. Run the app**
-
-```bash
 flutter run
 ```
 
----
+For web:
 
-## Project Structure
-
-```
-taskee/
-├── lib/
-│   ├── main.dart                   # App entry point
-│   ├── app/
-│   │   ├── routing/                # GoRouter navigation setup
-│   │   ├── theme/                  # Colors, typography & theme
-│   │   ├── extension/              # Dart extensions (context, size, etc.)
-│   │   └── helper/                 # Validators & utilities
-│   ├── di/
-│   │   └── dependency_injection.dart  # GetIt service locator
-│   └── features/
-│       ├── todo/                   # Task feature (data, domain, presentation)
-│       │   ├── data/               # Hive models, mappers, datasource, notifications
-│       │   ├── domain/             # Entities, use cases, repository contracts
-│       │   └── presentation/       # Bloc, pages & widgets
-│       ├── note/                   # Notes feature (same clean architecture)
-│       └── shared/                 # Shared cubit (e.g. tab state)
-├── assets/
-│   └── logo.png                    # App icon & assets
-├── test/                           # Unit & widget tests
-├── pubspec.yaml                    # Dependencies & configuration
-└── README.md
+```bash
+flutter run -d chrome
 ```
 
----
+## Web preview
 
-## Architecture
+`.github/workflows/deploy-pages.yml` builds the actual Flutter web application and deploys it to GitHub Pages whenever `main` changes. GitHub Pages must be enabled for the repository with **GitHub Actions** selected as the source.
 
-Taskee follows **Clean Architecture** with a clear separation of concerns across three layers:
+## Structure
 
-- **Data** — Hive local data sources, Hive models, and mappers
-- **Domain** — Pure Dart entities, repository interfaces, and use cases
-- **Presentation** — Bloc/Cubit for state management, pages, and widgets
+```text
+lib/
+  app/
+    routing/
+    theme/
+  features/
+    resource/
+      data/
+      domain/
+      presentation/
+    project/
+      domain/
+      presentation/
+```
 
----
+Legacy Taskee task/note source remains in the fork for reference but is no longer bootstrapped by the Resource Memory app.
 
-## Contributing
+## CI
 
-Contributions are welcome. To get started:
+`.github/workflows/flutter-ci.yml` runs dependency install, analysis, tests, and a release web build.
 
-1. Fork the repository
-2. Create a new branch — `git checkout -b feature/your-feature-name`
-3. Commit your changes — `git commit -m 'Add some feature'`
-4. Push to the branch — `git push origin feature/your-feature-name`
-5. Open a Pull Request
+## Attribution and license
 
-If you liked the repo then kindly support it by giving it a star ⭐!
+This project is derived from **Taskee** by **Junaid Jamel** and retains the original MIT License and copyright notice. Taskee's architecture and visual foundation were intentionally used as the starting point for Resource Memory.
 
-
----
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-## Author
-
-**Junaid Jamel**
-
-- Email: junaidsupercoder@gmail.com
-- LinkedIn: [linkedin.com/in/junaid-jamel](https://www.linkedin.com/in/junaid-jamel/)
-
----
-
-<div align="center">
-<sub>Built with Flutter &mdash; Taskee &copy; Junaid Jamel</sub>
-</div>
+See `LICENSE` for the full license text.

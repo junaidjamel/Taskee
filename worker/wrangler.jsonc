@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "resource-memory-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-18",
+  "r2_buckets": [
+    {
+      "binding": "RESOURCE_FILES",
+      "bucket_name": "resource-memory-files"
+    }
+  ]
+}

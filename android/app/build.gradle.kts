@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.taskee"
+    namespace = "com.naylahknee.resourcememory"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.junaid.taskee"
+        applicationId = "com.naylahknee.resourcememory"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
@@ -29,6 +29,8 @@ android {
 
     buildTypes {
         release {
+            // Internal testing uses the debug key for now. Replace with a private
+            // Play signing configuration before publishing to Google Play.
             signingConfig = signingConfigs.getByName("debug")
         }
     }

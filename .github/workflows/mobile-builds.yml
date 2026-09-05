@@ -1,0 +1,78 @@
+name: Mobile Builds
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'lib/**'
+      - 'android/**'
+      - 'ios/**'
+      - 'pubspec.yaml'
+      - '.github/workflows/mobile-builds.yml'
+
+jobs:
+  android-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build installable Android APK
+        run: >-
+          flutter build apk --release
+          --dart-define=RESOURCE_API_URL=${{ secrets.RESOURCE_API_URL }}
+
+      - name: Upload Android APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: resource-memory-android-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
+
+  ios-nosign:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build iOS without signing
+        run: >-
+          flutter build ios --release --no-codesign
+          --dart-define=RESOURCE_API_URL=${{ secrets.RESOURCE_API_URL }}
+
+      - name: Package unsigned iOS app
+        run: |
+          mkdir -p build/ios-artifact
+          cp -R build/ios/iphoneos/Runner.app build/ios-artifact/ResourceMemory.app
+          ditto -c -k --sequesterRsrc --keepParent build/ios-artifact/ResourceMemory.app build/ResourceMemory-ios-nosign.zip
+
+      - name: Upload unsigned iOS build
+        uses: actions/upload-artifact@v4
+        with:
+          name: resource-memory-ios-nosign
+          path: build/ResourceMemory-ios-nosign.zip
+          if-no-files-found: error
