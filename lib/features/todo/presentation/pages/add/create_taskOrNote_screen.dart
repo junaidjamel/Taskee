@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:taskee/app/extension/size_extension.dart';
-import 'package:taskee/app/extension/widget_padding_extension.dart';
-import 'package:taskee/app/theme/app_colors.dart';
-import 'package:taskee/app/theme/app_typography.dart';
-import 'package:taskee/features/note/domain/entities/note.dart';
-import 'package:taskee/features/note/presentation/bloc/note_bloc.dart';
-import 'package:taskee/features/note/presentation/bloc/note_event.dart';
-import 'package:taskee/features/note/presentation/pages/addNote/widget/create_orUpdate_note_widget.dart';
-import 'package:taskee/features/shared/cubit/tab_cubit.dart';
-import 'package:taskee/features/todo/domain/entities/todo.dart';
-import 'package:taskee/features/widget/app_gradient.dart';
+import 'package:resource_memory/app/extension/size_extension.dart';
+import 'package:resource_memory/app/extension/widget_padding_extension.dart';
+import 'package:resource_memory/app/theme/app_colors.dart';
+import 'package:resource_memory/app/theme/app_typography.dart';
+import 'package:resource_memory/features/note/domain/entities/note.dart';
+import 'package:resource_memory/features/note/presentation/bloc/note_bloc.dart';
+import 'package:resource_memory/features/note/presentation/bloc/note_event.dart';
+import 'package:resource_memory/features/note/presentation/pages/addNote/widget/create_orUpdate_note_widget.dart';
+import 'package:resource_memory/features/shared/cubit/tab_cubit.dart';
+import 'package:resource_memory/features/todo/domain/entities/todo.dart';
+import 'package:resource_memory/features/widget/app_gradient.dart';
 
 import 'widgets/create_orUpdate_task_widget.dart';
 

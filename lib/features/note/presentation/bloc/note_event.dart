@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:taskee/features/note/domain/entities/note.dart';
+import 'package:resource_memory/features/note/domain/entities/note.dart';
 
 abstract class NoteEvent extends Equatable {
   const NoteEvent();

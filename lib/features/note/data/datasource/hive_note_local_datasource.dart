@@ -1,6 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:taskee/features/note/data/datasource/note_local_datasource.dart';
-import 'package:taskee/features/note/data/model/note_hive_model.dart';
+import 'package:resource_memory/features/note/data/datasource/note_local_datasource.dart';
+import 'package:resource_memory/features/note/data/model/note_hive_model.dart';
 
 const String _noteBoxName = 'noteBox';
 const String _latestIdBoxName = "noteLatestIdBox";

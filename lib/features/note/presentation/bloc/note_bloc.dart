@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
-import 'package:taskee/features/note/domain/model/note_list_model.dart';
-import 'package:taskee/features/note/domain/usecase/add_note.dart';
-import 'package:taskee/features/note/domain/usecase/delete_note.dart';
-import 'package:taskee/features/note/domain/usecase/get_all_notes.dart';
-import 'package:taskee/features/note/domain/usecase/update_note.dart';
-import 'package:taskee/features/note/presentation/bloc/note_event.dart';
-import 'package:taskee/features/note/presentation/bloc/note_state.dart';
+import 'package:resource_memory/features/note/domain/model/note_list_model.dart';
+import 'package:resource_memory/features/note/domain/usecase/add_note.dart';
+import 'package:resource_memory/features/note/domain/usecase/delete_note.dart';
+import 'package:resource_memory/features/note/domain/usecase/get_all_notes.dart';
+import 'package:resource_memory/features/note/domain/usecase/update_note.dart';
+import 'package:resource_memory/features/note/presentation/bloc/note_event.dart';
+import 'package:resource_memory/features/note/presentation/bloc/note_state.dart';
 
 class NoteBloc extends Bloc<NoteEvent, NoteState> {
   final GetAllNotes getAllNotes;

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:taskee/features/todo/domain/usecases/cancel_task_notification.dart';
-import 'package:taskee/features/todo/domain/usecases/schedule_task_notification.dart';
+import 'package:resource_memory/features/todo/domain/usecases/cancel_task_notification.dart';
+import 'package:resource_memory/features/todo/domain/usecases/schedule_task_notification.dart';
 
 import '../../domain/usecases/add_todo.dart';
 import '../../domain/usecases/delete_todo.dart';

@@ -1,5 +1,5 @@
-import 'package:taskee/features/note/data/model/note_hive_model.dart';
-import 'package:taskee/features/note/domain/entities/note.dart';
+import 'package:resource_memory/features/note/data/model/note_hive_model.dart';
+import 'package:resource_memory/features/note/domain/entities/note.dart';
 
 extension NoteHiveModelToDomain on NoteHiveModel {
   Note toDomain() {

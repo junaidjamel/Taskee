@@ -1,0 +1,8 @@
+{
+  "name": "resource-memory-enrichment-api",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "openai": "^5.0.0"
+  }
+}

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:taskee/app/extension/size_extension.dart';
-import 'package:taskee/app/extension/widget_padding_extension.dart';
-import 'package:taskee/app/theme/app_assets.dart';
-import 'package:taskee/app/theme/app_colors.dart';
-import 'package:taskee/app/theme/app_typography.dart';
+import 'package:resource_memory/app/extension/size_extension.dart';
+import 'package:resource_memory/app/extension/widget_padding_extension.dart';
+import 'package:resource_memory/app/theme/app_assets.dart';
+import 'package:resource_memory/app/theme/app_colors.dart';
+import 'package:resource_memory/app/theme/app_typography.dart';
 
 class UserInfoWidget extends StatelessWidget {
   const UserInfoWidget({super.key});

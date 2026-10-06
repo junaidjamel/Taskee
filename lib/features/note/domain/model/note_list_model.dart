@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:taskee/features/note/domain/entities/note.dart';
+import 'package:resource_memory/features/note/domain/entities/note.dart';
 
 class NoteListModel extends Equatable {
   const NoteListModel({required this.noteList});

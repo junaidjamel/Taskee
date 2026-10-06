@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "taskee" "\0"
+            VALUE "FileDescription", "Resource Memory" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "taskee" "\0"
+            VALUE "InternalName", "resource_memory" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2026 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "taskee.exe" "\0"
-            VALUE "ProductName", "taskee" "\0"
+            VALUE "OriginalFilename", "resource_memory.exe" "\0"
+            VALUE "ProductName", "Resource Memory" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
