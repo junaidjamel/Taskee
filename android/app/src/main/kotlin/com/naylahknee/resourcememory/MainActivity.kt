@@ -1,4 +1,4 @@
-package com.example.taskee
+package com.naylahknee.resourcememory
 
 import io.flutter.embedding.android.FlutterActivity
 

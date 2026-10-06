@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:taskee/app/extension/context_extension.dart';
-import 'package:taskee/app/extension/widget_padding_extension.dart';
-import 'package:taskee/app/theme/app_assets.dart';
-import 'package:taskee/features/todo/domain/entities/todo.dart';
-import 'package:taskee/features/todo/presentation/bloc/todo_bloc.dart';
-import 'package:taskee/features/todo/presentation/bloc/todo_event.dart';
-import 'package:taskee/features/todo/presentation/bloc/todo_state.dart';
-import 'package:taskee/features/todo/presentation/pages/add/create_taskOrNote_screen.dart';
-import 'package:taskee/features/todo/presentation/pages/home/widget/todo_list_item.dart';
+import 'package:resource_memory/app/extension/context_extension.dart';
+import 'package:resource_memory/app/extension/widget_padding_extension.dart';
+import 'package:resource_memory/app/theme/app_assets.dart';
+import 'package:resource_memory/features/todo/domain/entities/todo.dart';
+import 'package:resource_memory/features/todo/presentation/bloc/todo_bloc.dart';
+import 'package:resource_memory/features/todo/presentation/bloc/todo_event.dart';
+import 'package:resource_memory/features/todo/presentation/bloc/todo_state.dart';
+import 'package:resource_memory/features/todo/presentation/pages/add/create_taskOrNote_screen.dart';
+import 'package:resource_memory/features/todo/presentation/pages/home/widget/todo_list_item.dart';
 
 class TaskWidget extends StatelessWidget {
   const TaskWidget({super.key});

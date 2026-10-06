@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:taskee/app/theme/app_colors.dart';
+import 'package:resource_memory/app/theme/app_colors.dart';
 
 class DueAtPicker extends StatelessWidget {
   const DueAtPicker({super.key, required this.dueAt, required this.onChanged});

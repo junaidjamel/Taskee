@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:taskee/app/extension/capital_firstletter_extension.dart';
-import 'package:taskee/features/note/domain/entities/note.dart';
+import 'package:resource_memory/app/extension/capital_firstletter_extension.dart';
+import 'package:resource_memory/features/note/domain/entities/note.dart';
 
 const _kAccentLight = Color(0xFFD8E87C);
 const _kGlassBorder = Color(0x44FFFFFF);

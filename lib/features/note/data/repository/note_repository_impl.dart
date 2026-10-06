@@ -1,7 +1,7 @@
-import 'package:taskee/features/note/data/datasource/note_local_datasource.dart';
-import 'package:taskee/features/note/data/mappers/note_mapper.dart';
-import 'package:taskee/features/note/domain/entities/note.dart';
-import 'package:taskee/features/note/domain/repository/note_repository.dart';
+import 'package:resource_memory/features/note/data/datasource/note_local_datasource.dart';
+import 'package:resource_memory/features/note/data/mappers/note_mapper.dart';
+import 'package:resource_memory/features/note/domain/entities/note.dart';
+import 'package:resource_memory/features/note/domain/repository/note_repository.dart';
 
 class NoteRepositoryImpl implements NoteRepository {
   final NoteLocalDatasource localDatasource;

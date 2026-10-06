@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:taskee/app/extension/capital_firstletter_extension.dart';
-import 'package:taskee/app/extension/context_extension.dart';
-import 'package:taskee/app/extension/size_extension.dart';
-import 'package:taskee/app/theme/app_colors.dart';
-import 'package:taskee/app/theme/app_typography.dart';
-import 'package:taskee/features/todo/domain/entities/todo.dart';
+import 'package:resource_memory/app/extension/capital_firstletter_extension.dart';
+import 'package:resource_memory/app/extension/context_extension.dart';
+import 'package:resource_memory/app/extension/size_extension.dart';
+import 'package:resource_memory/app/theme/app_colors.dart';
+import 'package:resource_memory/app/theme/app_typography.dart';
+import 'package:resource_memory/features/todo/domain/entities/todo.dart';
 
 class TodoListItem extends StatelessWidget {
   final Todo todo;

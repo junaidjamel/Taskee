@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:taskee/app/extension/context_extension.dart';
-import 'package:taskee/app/theme/app_assets.dart';
-import 'package:taskee/features/note/presentation/bloc/note_bloc.dart';
-import 'package:taskee/features/note/presentation/bloc/note_state.dart';
+import 'package:resource_memory/app/extension/context_extension.dart';
+import 'package:resource_memory/app/theme/app_assets.dart';
+import 'package:resource_memory/features/note/presentation/bloc/note_bloc.dart';
+import 'package:resource_memory/features/note/presentation/bloc/note_state.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
-import 'package:taskee/features/note/presentation/pages/addNote/widget/note_card.dart';
-import 'package:taskee/features/todo/presentation/pages/add/create_taskOrNote_screen.dart';
+import 'package:resource_memory/features/note/presentation/pages/addNote/widget/note_card.dart';
+import 'package:resource_memory/features/todo/presentation/pages/add/create_taskOrNote_screen.dart';
 
 class NoteWidget extends StatefulWidget {
   const NoteWidget({super.key});

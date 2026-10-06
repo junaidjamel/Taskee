@@ -1,0 +1,15 @@
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#171717;background:#fff}*{box-sizing:border-box}body{margin:0}.popup{width:330px}.options{max-width:640px;margin:48px auto}.popup main{padding:24px}.options main{padding:0 24px}.mark{width:34px;height:34px;border-radius:10px;background:#171717;color:#fff;display:grid;place-items:center;font-weight:700;margin-bottom:22px}h1{font-size:24px;letter-spacing:-.03em;margin:0 0 8px}h2{font-size:18px;margin-top:28px}.lead,.hint{color:#666;line-height:1.45}.lead{margin:0 0 24px}.hint{font-size:13px}button{font:inherit;border-radius:12px;padding:11px 14px;width:100%;cursor:pointer;margin-top:9px;border:1px solid #ddd}.primary{background:#171717;color:#fff;border-color:#171717}.secondary{background:#fff;color:#171717}.text-button{background:transparent;border:0;color:#666;font-size:13px;margin-top:16px}button:disabled{opacity:.55}label{display:block;font-size:13px;font-weight:600;margin:18px 0}input,textarea{display:block;width:100%;margin-top:7px;border:1px solid #d8d8d8;border-radius:10px;padding:11px;font:inherit;background:#fff}textarea{resize:vertical}.status{font-size:13px;color:#666;min-height:18px}.close-box{border-top:1px solid #eee;margin-top:18px;padding-top:18px}.close-box strong,.close-box span{display:block}.close-box span{font-size:13px;color:#666;margin-top:4px}.actions{display:flex;gap:8px}.actions button{flex:1}hr{border:0;border-top:1px solid #eee;margin:32px 0}
+.sessions-section{margin-top:24px;border-top:1px solid #eee;padding-top:16px}
+.sessions-section h2{font-size:16px;margin:0 0 4px}
+.sessions-list{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.session-card{border:1px solid #ddd;border-radius:12px;background:#fff;overflow:hidden}
+.session-header{width:100%;display:flex;justify-content:space-between;align-items:baseline;gap:10px;background:#fff;border:0;border-radius:0;margin:0;padding:11px 14px;text-align:left;cursor:pointer}
+.session-title{font-weight:600;font-size:14px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.session-meta{font-size:12px;color:#666;white-space:nowrap}
+.session-body{border-top:1px solid #eee;padding:4px 14px 12px}
+.session-group{margin-top:8px}
+.session-group-title{font-size:12px;font-weight:600;color:#666;margin:0 0 4px}
+.session-tab{display:flex;gap:8px;align-items:center;font-size:13px;padding:4px 0}
+.session-tab input{width:auto;margin:0}
+.session-tab span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.session-restore{padding:0 14px 12px}

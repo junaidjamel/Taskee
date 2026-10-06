@@ -1,0 +1,17 @@
+{
+  "name": "resource-memory-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "test": "node --experimental-strip-types --test test/*.test.mjs",
+    "check:health": "node scripts/check-health.mjs",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

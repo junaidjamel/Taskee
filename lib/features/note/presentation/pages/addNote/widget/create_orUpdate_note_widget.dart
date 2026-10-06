@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:taskee/app/extension/size_extension.dart';
-import 'package:taskee/app/extension/widget_padding_extension.dart';
-import 'package:taskee/app/helper/title_field_validator.dart';
-import 'package:taskee/features/note/domain/entities/note.dart';
-import 'package:taskee/features/note/presentation/bloc/note_bloc.dart';
-import 'package:taskee/features/note/presentation/bloc/note_event.dart';
-import 'package:taskee/features/widget/app_button.dart';
+import 'package:resource_memory/app/extension/size_extension.dart';
+import 'package:resource_memory/app/extension/widget_padding_extension.dart';
+import 'package:resource_memory/app/helper/title_field_validator.dart';
+import 'package:resource_memory/features/note/domain/entities/note.dart';
+import 'package:resource_memory/features/note/presentation/bloc/note_bloc.dart';
+import 'package:resource_memory/features/note/presentation/bloc/note_event.dart';
+import 'package:resource_memory/features/widget/app_button.dart';
 
 class CreateOrUpdateNoteWidget extends StatefulWidget {
   final Note? note;

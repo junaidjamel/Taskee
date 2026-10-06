@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Color palette for Taskee — dark notes app.
+/// Color palette for Resource Memory.
 abstract final class AppColors {
   AppColors._();
 

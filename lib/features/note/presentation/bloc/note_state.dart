@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:taskee/features/note/domain/model/note_list_model.dart';
+import 'package:resource_memory/features/note/domain/model/note_list_model.dart';
 
 abstract class NoteState extends Equatable {
   const NoteState();

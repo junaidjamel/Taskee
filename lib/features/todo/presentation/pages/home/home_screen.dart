@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:taskee/app/extension/context_extension.dart';
-import 'package:taskee/app/extension/widget_padding_extension.dart';
-import 'package:taskee/app/theme/app_colors.dart';
-import 'package:taskee/app/theme/app_typography.dart';
-import 'package:taskee/features/shared/cubit/tab_cubit.dart';
+import 'package:resource_memory/app/extension/context_extension.dart';
+import 'package:resource_memory/app/extension/widget_padding_extension.dart';
+import 'package:resource_memory/app/theme/app_colors.dart';
+import 'package:resource_memory/app/theme/app_typography.dart';
+import 'package:resource_memory/features/shared/cubit/tab_cubit.dart';
 
-import 'package:taskee/features/todo/presentation/pages/add/create_taskOrNote_screen.dart';
-import 'package:taskee/features/note/presentation/pages/addNote/widget/note_widget.dart';
-import 'package:taskee/features/todo/presentation/pages/home/widget/task_widget.dart';
-import 'package:taskee/features/todo/presentation/pages/home/widget/user_info_widget.dart';
-import 'package:taskee/features/widget/app_gradient.dart';
+import 'package:resource_memory/features/todo/presentation/pages/add/create_taskOrNote_screen.dart';
+import 'package:resource_memory/features/note/presentation/pages/addNote/widget/note_widget.dart';
+import 'package:resource_memory/features/todo/presentation/pages/home/widget/task_widget.dart';
+import 'package:resource_memory/features/todo/presentation/pages/home/widget/user_info_widget.dart';
+import 'package:resource_memory/features/widget/app_gradient.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

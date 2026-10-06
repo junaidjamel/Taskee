@@ -1,4 +1,4 @@
-import 'package:taskee/features/note/domain/repository/note_repository.dart';
+import 'package:resource_memory/features/note/domain/repository/note_repository.dart';
 
 class DeleteNote {
   final NoteRepository repository;

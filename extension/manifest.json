@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "NanyNany: Remember my tabs",
+  "version": "0.2.0",
+  "description": "Save your open tabs as one NanyNany memory, then reopen any session later without losing your place.",
+  "permissions": ["tabs", "storage"],
+  "action": {
+    "default_title": "Remember my tabs",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js"
+  }
+}

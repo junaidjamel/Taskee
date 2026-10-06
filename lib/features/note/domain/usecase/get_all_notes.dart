@@ -1,5 +1,5 @@
-import 'package:taskee/features/note/domain/entities/note.dart';
-import 'package:taskee/features/note/domain/repository/note_repository.dart';
+import 'package:resource_memory/features/note/domain/entities/note.dart';
+import 'package:resource_memory/features/note/domain/repository/note_repository.dart';
 
 class GetAllNotes {
   final NoteRepository repository;

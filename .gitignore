@@ -43,3 +43,10 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Worker dependencies, generated bundles, and local credentials
+worker/node_modules/
+worker/dist/
+worker/.wrangler/
+worker/.dev.vars*
+worker/.env*

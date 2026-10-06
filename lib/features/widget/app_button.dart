@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:taskee/app/extension/size_extension.dart';
-import 'package:taskee/app/theme/app_colors.dart';
-import 'package:taskee/app/theme/app_typography.dart';
-import 'package:taskee/features/widget/bouncing_animation.dart';
+import 'package:resource_memory/app/extension/size_extension.dart';
+import 'package:resource_memory/app/theme/app_colors.dart';
+import 'package:resource_memory/app/theme/app_typography.dart';
+import 'package:resource_memory/features/widget/bouncing_animation.dart';
 
 class AppButton extends StatelessWidget {
   final Color? btnColor;
